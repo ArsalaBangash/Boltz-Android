@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.fragments.AnswerFeedbackFragment">
+
+    <FrameLayout
+        android:id="@+id/feedback_incorrect"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0"
+        android:background="@color/colorRedLight" />
+
+    <RelativeLayout
+        android:id="@+id/feedback_correct"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0">
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/feedback_correct_anim"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            app:lottie_fileName="correct_check.json"
+            app:lottie_scale="0.5" />
+
+        <TextView
+            android:id="@+id/feedback_xp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/feedback_correct_anim"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="12dp"
+            android:textColor="@color/colorGoldDark"
+            tools:ignore="RtlHardcoded" />
+    </RelativeLayout>
+
+
+</RelativeLayout>

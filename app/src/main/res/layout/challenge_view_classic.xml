@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/challengeView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="1">
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/challenge_label"
+        android:layout_width="match_parent"
+        android:layout_height="24dp"
+        android:textColor="@color/colorSecondaryText"
+        android:layout_margin="12dp"
+        app:autoSizeMaxTextSize="22sp"
+        app:autoSizeTextType="uniform" />
+
+    <FrameLayout
+        android:id="@+id/qaContainer"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.45">
+
+        <include
+            layout="@layout/question_answer_classic"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/inputContainer"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.55">
+
+        <include
+            layout="@layout/input_classic"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="bottom" />
+    </FrameLayout>
+
+
+</LinearLayout>
+

@@ -1,0 +1,33 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">BoltzPractice</string>
+
+    <string name="session_tutorial_welcome_title">Welcome to your math practice session!</string>
+    <string name="session_tutorial_welcome_message">This is where you get to practice the concepts
+    you picked out in a fun and rewarding environment!</string>
+
+    <string name="session_tutorial_question_title">You\'re Ready!</string>
+    <string name="session_tutorial_question_message">Have fun practicing your math concepts!
+        Get started with this awesome question!</string>
+
+    <string name="session_tutorial_input_title">Your answer will appear here!</string>
+    <string name="session_tutorial_input_message">Use the grid to enter your answer! The grid will change
+    depending on the type of question.</string>
+
+    <string name="session_tutorial_check_title">Submit!</string>
+    <string name="session_tutorial_check_message">When you\'re confident with your answer,
+    hit this check button to go to the next question!</string>
+
+    <string name="session_tutorial_bars_title">What do these bars mean?</string>
+    <string name="session_tutorial_bars_message">The blue bar tells you how many more questions you have to
+        solve to complete the session.\n\nThe gold bar counts down your XP multiplier. The faster you solve
+        a question, the more XP you get!
+    </string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="question_count">questionCount</string>
+    <string name="is_volume_on">isVolumeOn</string>
+    <string name="practice_challenges">practiceChallenges</string>
+    <string name="show_practice_tutorial">showPracticeTutorial</string>
+    <string name="practice_level">practiceLevel</string>
+</resources>

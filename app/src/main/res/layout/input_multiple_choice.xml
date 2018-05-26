@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="0.6">
+
+
+    <com.arsalabangash.boltz.practice.ui.views.MultipleChoiceGridView
+        android:id="@+id/multiple_choice_options"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.35"
+        android:gravity="center">
+
+        <TableRow>
+
+            <RadioButton
+                android:id="@+id/optionA"
+                style="@style/multiple_choice_button_style"
+                android:layout_weight="1"
+                android:background="@drawable/input_button"
+                android:onClick="onInputButtonPressed" />
+
+
+            <RadioButton
+                android:id="@+id/optionB"
+                style="@style/multiple_choice_button_style"
+                android:layout_weight="1"
+                android:background="@drawable/input_button"
+                android:onClick="onInputButtonPressed" />
+
+        </TableRow>
+
+        <TableRow>
+
+            <RadioButton
+                android:id="@+id/optionC"
+                style="@style/multiple_choice_button_style"
+                android:layout_weight="1"
+                android:background="@drawable/input_button"
+                android:onClick="onInputButtonPressed" />
+
+
+            <RadioButton
+                android:id="@+id/optionD"
+                style="@style/multiple_choice_button_style"
+                android:layout_weight="1"
+                android:background="@drawable/input_button"
+                android:onClick="onInputButtonPressed" />
+
+        </TableRow>
+    </com.arsalabangash.boltz.practice.ui.views.MultipleChoiceGridView>
+
+    <Button
+        android:id="@+id/checkButton"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="8dp"
+        android:layout_weight="0.25"
+        style="?android:attr/borderlessButtonStyle"
+        android:background="@color/colorPrimary"
+        android:onClick="check"
+        android:text="CHECK"
+        android:textColor="@color/colorWhite" />
+
+</LinearLayout>

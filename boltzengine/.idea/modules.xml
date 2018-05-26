@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/BOLTZEngine.iml" filepath="$PROJECT_DIR$/BOLTZEngine.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/BOLTZEngine_main.iml" filepath="$PROJECT_DIR$/.idea/modules/BOLTZEngine_main.iml" group="BOLTZEngine" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/BOLTZEngine_test.iml" filepath="$PROJECT_DIR$/.idea/modules/BOLTZEngine_test.iml" group="BOLTZEngine" />
+    </modules>
+  </component>
+</project>

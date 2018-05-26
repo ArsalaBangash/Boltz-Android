@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/challengeView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="1">
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/challenge_label"
+        android:layout_width="match_parent"
+        android:layout_height="24dp"
+        android:layout_margin="12dp"
+        android:textColor="@color/colorSecondaryText"
+        app:autoSizeMaxTextSize="22sp"
+        app:autoSizeTextType="uniform" />
+
+    <FrameLayout
+        android:id="@+id/qaContainer"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.35">
+
+        <katex.hourglass.in.mathlib.MathView
+            android:id="@+id/questionView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="8dp"
+            android:scrollbars="none"
+            android:textAlignment="center"
+            app:setClickable="true"
+            app:setTextColor="@color/colorSecondary" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/inputContainer"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.65">
+
+        <include
+            layout="@layout/input_multiple_choice"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </FrameLayout>
+
+
+</LinearLayout>
+

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="challenge_types">
+        <item>Addition</item>
+        <item>Subtraction</item>
+        <item>Multiplication</item>
+        <item>Division</item>
+        <item>Factorization</item>
+        <item>Modulus</item>
+        <item>Degree Trigonometry</item>
+        <item>Radian Trigonometry</item>
+        <item>Binary Conversion</item>
+        <item>Hexadecimal Conversion</item>
+    </string-array>
+
+    <array name="challenge_icons">
+        <item>@drawable/ic_plus</item>
+        <item>@drawable/ic_minus</item>
+        <item>@drawable/ic_multiply</item>
+        <item>@drawable/ic_division</item>
+        <item>@drawable/ic_factorization</item>
+        <item>@drawable/ic_mod</item>
+        <item>@drawable/ic_theta</item>
+        <item>@drawable/ic_pi</item>
+        <item>@drawable/ic_binary</item>
+        <item>@drawable/ic_hex_01</item>
+    </array>
+
+</resources>

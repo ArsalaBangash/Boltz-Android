@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="1">
+
+    <katex.hourglass.in.mathlib.MathView
+        android:id="@+id/questionView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="8dp"
+        android:layout_weight="0.6"
+        android:scrollbars="none"
+        android:textAlignment="center"
+        app:setClickable="true"
+        app:setTextColor="@color/colorSecondary" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.4"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/hex_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="40sp"
+            android:layout_marginBottom="6dp"
+            android:textColor="@color/colorSecondaryText"
+            android:text="0x"
+            android:layout_alignParentBottom="true" />
+
+
+        <com.arsalabangash.boltz.practice.ui.views.ChallengeTextInput
+            android:id="@+id/answerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:cursorVisible="true"
+            android:layout_marginRight="8dp"
+            android:onClick="setInput"
+            android:textSize="30sp"
+            android:layout_alignParentBottom="true"
+            android:layout_toRightOf="@id/hex_label" />
+
+    </RelativeLayout>
+
+
+</LinearLayout>

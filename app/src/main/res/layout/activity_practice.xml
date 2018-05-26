@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite"
+    tools:context="com.arsalabangash.boltz.practice.ui.activities.PracticeActivity">
+
+    <!--<FrameLayout-->
+        <!--android:id="@+id/session_incorrect_feedback"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:alpha="0"-->
+        <!--android:background="@color/colorRedLight" />-->
+
+    <!--<RelativeLayout-->
+        <!--android:id="@+id/session_ready_content"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_margin="8dp"-->
+        <!--android:alpha="0"-->
+        <!--android:orientation="vertical">-->
+
+        <!--<android.support.v7.widget.Toolbar-->
+            <!--android:id="@+id/session_toolbar"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="?attr/actionBarSize"-->
+            <!--android:background="@color/colorWhite">-->
+
+        <!--</android.support.v7.widget.Toolbar>-->
+
+        <!--<AdapterViewFlipper-->
+            <!--android:id="@+id/session_challenge_holder"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_below="@id/session_toolbar" />-->
+
+        <!--<include layout="@layout/toolbar_practice" />-->
+
+
+    <!--</RelativeLayout>-->
+
+    <!--<RelativeLayout-->
+        <!--android:id="@+id/session_correct_feedback"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_centerInParent="true"-->
+        <!--android:alpha="0">-->
+
+        <!--<com.airbnb.lottie.LottieAnimationView-->
+            <!--android:id="@+id/session_correct_anim"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_centerInParent="true"-->
+            <!--app:lottie_fileName="correct_check.json"-->
+            <!--app:lottie_scale="0.5" />-->
+
+        <!--<TextView-->
+            <!--android:id="@+id/session_xp_text"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_below="@id/session_correct_anim"-->
+            <!--android:layout_centerInParent="true"-->
+            <!--android:layout_marginTop="12dp"-->
+            <!--android:textColor="@color/colorGoldDark"-->
+            <!--tools:ignore="RtlHardcoded" />-->
+
+
+    <!--</RelativeLayout>-->
+
+
+    <!--<ProgressBar-->
+        <!--android:id="@+id/session_ready_progress"-->
+        <!--style="@style/LoadingProgressBar"-->
+        <!--android:layout_width="124dp"-->
+        <!--android:layout_height="124dp"-->
+        <!--android:layout_centerInParent="true"-->
+        <!--android:layout_gravity="center" />-->
+
+
+</RelativeLayout>
+
+
+

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="bottom"
+    android:layout_gravity="bottom"
+    android:weightSum="0.6">
+
+    <include
+        layout="@layout/grid_hex"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="8dp"
+        android:layout_weight="0.5" />
+
+    <Button
+        android:id="@+id/checkButton"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        android:layout_weight="0.1"
+        style="?android:attr/borderlessButtonStyle"
+        android:background="@color/colorPrimary"
+        android:onClick="check"
+        android:text="CHECK"
+        android:textColor="@color/colorWhite" />
+
+</LinearLayout>

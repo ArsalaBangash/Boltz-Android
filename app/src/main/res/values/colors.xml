@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <color name="colorPrimaryDark">#388E3C</color>
+    <color name="colorPrimaryLight">#81C784</color>
+    <color name="colorLogoBack">#66BB6A</color>
+
+
+    <color name="colorRedLight">#E57373</color>
+
+
+    <color name="colorOrangeLight">#FFB74D</color>
+
+
+    <color name="colorGoldDark">#FFC107</color>
+    <color name="colorGoldLight">#FFECB3</color>
+
+
+    <color name="colorPurpleLight">#BA68C8</color>
+
+    <color name="colorTeal">#009688</color>
+    <color name="colorTealLight">#4DB6AC</color>
+
+    <color name="colorGreyBlue">#607D8B</color>
+    <color name="colorGreyBlueLight">#90A4AE</color>
+
+    <color name="colorBronze">#CD7F32</color>
+    <color name="colorSilver">#C0C0C0</color>
+
+    <color name="colorPrimary">#27ae60</color>
+    <color name="colorAccent">#3498db</color>
+
+    <color name="colorBlack">#000000</color>
+    <color name="colorWhite">#ffffff</color>
+    <color name="colorTransparent">@android:color/transparent</color>
+
+
+    <color name="colorSecondary">#3498db</color>
+    <color name="colorBackground">#F9F9F9</color>
+    <color name="colorDivider">#BDBDBD</color>
+    <color name="colorSecondaryText">#757575</color>
+
+
+    <color name="colorPurple">#9b59b6</color>
+    <color name="colorTurquoise">#1abc9c</color>
+    <color name="colorRed">#e74c3c</color>
+    <color name="colorOrange">#f39c12</color>
+    <color name="colorYellow">#f1c40f</color>
+    <color name="colorBlueAlt">#2980b9</color>
+    <color name="colorGreyDark">#2c3e50</color>
+</resources>

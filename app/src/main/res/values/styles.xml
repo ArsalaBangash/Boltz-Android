@@ -1,0 +1,63 @@
+<resources>
+
+
+    <style name="BoltzTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorControlNormal">@color/colorWhite</item>
+        <item name="colorControlHighlight">@color/colorSecondary</item>
+        <item name="windowActionBarOverlay">false</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:actionBarStyle">@style/ActionBarTheme</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="ActionBarTheme" parent="BoltzTheme">
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="android:textColor">@color/colorWhite</item>
+    </style>
+
+
+    <style name="grid_button_style" parent="@android:style/Theme.Material.Light">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/colorWhite</item>
+    </style>
+
+    <style name="multiple_choice_button_style" parent="grid_button_style">
+        <item name="android:layout_margin">6dp</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">72dp</item>
+        <item name="android:button">@null</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textSize">26sp</item>
+    </style>
+
+    <style name="backspace_button_style" parent="grid_button_style">
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:shadowColor">@color/colorRed</item>
+        <item name="android:shadowRadius">5</item>
+    </style>
+
+    <style name="SplashTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@drawable/splash_screen</item>
+    </style>
+
+    <style name="LoadingProgressBar" parent="Base.Widget.AppCompat.ProgressBar">
+        <item name="android:indeterminateOnly">false</item>
+        <item name="android:progressDrawable">@drawable/progress_loading</item>
+    </style>
+
+    <style name="ReminderTimePickerHeaderText" parent="@android:style/TextAppearance.Material">
+        <item name="android:textSize">60sp</item>
+        <item name="android:textColor">@color/colorSecondary</item>
+
+    </style>
+
+    <style name="BoltzTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="BoltzTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+
+</resources>
