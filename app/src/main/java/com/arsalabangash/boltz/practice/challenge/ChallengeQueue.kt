@@ -23,10 +23,4 @@ class ChallengeQueue : java.util.concurrent.LinkedBlockingDeque<Challenge>() {
     fun dequeHeadChallenge(): Challenge {
         return super.poll()
     }
-
-    fun newHeadChallenge(challenge: Challenge) {
-        super.addFirst(challenge)
-    }
-
-
 }

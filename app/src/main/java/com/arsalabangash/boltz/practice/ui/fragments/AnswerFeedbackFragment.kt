@@ -19,16 +19,28 @@ import com.arsalabangash.boltz.practice.utils.onAnimEnd
 import kotlinx.android.synthetic.main.fragment_answer_feedback.view.*
 
 
+data class AnimationData(val speed: Float, val scale: Float)
+
 class AnswerFeedbackFragment : Fragment() {
 
     private lateinit var boltzPracticeActivity: BoltzPracticeActivity
     private lateinit var correctMP: MediaPlayer
     private lateinit var inCorrectMP: MediaPlayer
+    private lateinit var sessionEndMP: MediaPlayer
 
     private lateinit var xpView: TextView
-    private lateinit var animationView: LottieAnimationView
+    private lateinit var animationContainer: FrameLayout
     private lateinit var correctFeedbackContainer: RelativeLayout
     private lateinit var incorrectFeedbackContainer: FrameLayout
+
+    private lateinit var checkAnim: LottieAnimationView
+
+    val animations = hashMapOf<String, AnimationData>(
+            "balloons.json" to AnimationData(6f, 1f),
+            "clap.json" to AnimationData(0.8f, 2f),
+            "correct_check.json" to AnimationData(1f, 0.5f),
+            "done.json" to AnimationData(2f, 0.5f)
+    )
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -38,15 +50,17 @@ class AnswerFeedbackFragment : Fragment() {
         boltzPracticeActivity = activity as BoltzPracticeActivity
         correctMP = MediaPlayer.create(boltzPracticeActivity, R.raw.correct)
         inCorrectMP = MediaPlayer.create(boltzPracticeActivity, R.raw.incorrect)
+        sessionEndMP = MediaPlayer.create(activity, R.raw.session_end)
         bindViews(fragmentView)
         return fragmentView
     }
 
     fun bindViews(fragmentView: View) {
         xpView = fragmentView.feedback_xp
-        animationView = fragmentView.feedback_correct_anim
+        animationContainer = fragmentView.feedback_animation_container
         correctFeedbackContainer = fragmentView.feedback_correct
         incorrectFeedbackContainer = fragmentView.feedback_incorrect
+        checkAnim = fragmentView.feedback_anim_check
     }
 
     fun correctAnswer(xp: Long) {
@@ -65,21 +79,36 @@ class AnswerFeedbackFragment : Fragment() {
         incorrectFeedbackContainer.animate().alpha(0f).duration = 800
     }
 
+    fun endSession(didComplete: Boolean) {
+        if (didComplete) {
+            sessionEndMP.start()
+        }
+    }
 
-    fun animateCorrect(xp: Long) {
+    private fun animateCorrect(xp: Long) {
+        animateXP(xp)
+        setCorrectAnimation("correct_check.json", checkAnim)
+
+    }
+
+    private fun setCorrectAnimation(animation: String, animationView: LottieAnimationView) {
+        val animationData = animations[animation]!!
+        animationView.scale = animationData.scale
+        animationView.setSpeed(animationData.speed)
+        animationView.progress = 0f
+        animationView.playAnimation()
+        animationView.onAnimEnd {
+            correctFeedbackContainer.animate().alpha(0f)
+            animationContainer.animate().alpha(0f)
+            boltzPracticeActivity.answerFeedbackFinished()
+        }
+    }
+
+    private fun animateXP(xp: Long) {
         val xpString = StringBuilder("+")
         xpString.append(xp)
         xpString.append(" xp")
         xpView.text = xpString.toString()
-        animationView.progress = 0f
-        animationView.alpha = 1f
-        animationView.playAnimation()
-        animationView.onAnimEnd {
-            correctFeedbackContainer.animate().alpha(0f)
-            animationView.animate().alpha(0f)
-            boltzPracticeActivity.answerFeedbackFinished()
-
-        }
         xpView.animate().alpha(1f).setDuration(100)
         xpView.animate().scaleX(2.5f).setDuration(300)
         xpView.animate().scaleY(2.5f).setDuration(300)

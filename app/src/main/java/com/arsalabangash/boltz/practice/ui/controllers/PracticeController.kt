@@ -1,7 +1,6 @@
 package com.arsalabangash.boltz.practice.ui.controllers
 
 import android.annotation.SuppressLint
-import android.media.MediaPlayer
 import android.os.CountDownTimer
 import android.os.SystemClock
 import android.view.View
@@ -10,12 +9,10 @@ import android.widget.ProgressBar
 import android.widget.RadioButton
 import android.widget.TextView
 import com.arsalabangash.boltz.practice.BoltzPracticeApp
-import com.arsalabangash.boltz.practice.R
 import com.arsalabangash.boltz.practice.challenge.*
 import com.arsalabangash.boltz.practice.models.ChallengeModel
 import com.arsalabangash.boltz.practice.ui.activities.BoltzPracticeActivity
 import com.arsalabangash.boltz.practice.ui.fragments.PracticeFragment
-import com.arsalabangash.boltz.practice.ui.views.ChallengeTextInput
 import com.arsalabangash.boltz.practice.ui.views.MultipleChoiceGridView
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -29,8 +26,7 @@ class PracticeController(val context: PracticeFragment, challengeNames: ArrayLis
                          val level: String, val boltzPracticeActivity: BoltzPracticeActivity) {
 
     val challenges = ChallengeQueue()
-    private var inputView: ChallengeTextInput? = null
-    var sessionEndMP = MediaPlayer.create(context.activity, R.raw.session_end)
+
     @Inject
     lateinit var challengeUtils: ChallengeUtils
     private val challengeGenerator: ChallengeGenerator
@@ -77,7 +73,11 @@ class PracticeController(val context: PracticeFragment, challengeNames: ArrayLis
         }
     }
 
-    fun handleCorrect() {
+    /**
+     * If there were no incorrectly answered challenges, we add a new challenge to the
+     * [ChallengeQueue]. Otherwise, we show an older incorrectly answered challenge.
+     */
+    private fun handleCorrect() {
         with(challenges) {
             dequeHeadChallenge()
             if (numIncorrect > 0) {
@@ -89,13 +89,14 @@ class PracticeController(val context: PracticeFragment, challengeNames: ArrayLis
         }
     }
 
-    fun getCurrentQuestion() = challenges.getHeadChallenge()
-
-    fun addQuestion() {
-        challenges.addChallenge(challengeGenerator.generateChallenge())
-    }
-
-    fun handleIncorrect() {
+    /**
+     * The [ChallengeQueue] is configured so that users have to try again at answering a question
+     * that they got incorrect.
+     *
+     * However, if they continue to answer a group of questions incorrectly, we add a new challenge
+     * to freshen things up.
+     */
+    private fun handleIncorrect() {
         with(challenges) {
             if (numIncorrect > incorrectInRow) {
                 addChallenge(dequeHeadChallenge())
@@ -109,8 +110,29 @@ class PracticeController(val context: PracticeFragment, challengeNames: ArrayLis
         }
     }
 
-    fun xpTimerInit(timeInMillis: Long, progressBar: ProgressBar, xpLeftText: TextView): CountDownTimer {
-        return object : CountDownTimer(timeInMillis, 10) {
+
+    private fun getCurrentQuestion() = challenges.getHeadChallenge()
+
+    private fun addQuestion() {
+        challenges.addChallenge(challengeGenerator.generateChallenge())
+    }
+
+    /**
+     * Configures a countdown timer for a new challenge, updating the [progressbar] and [xpLeftText]
+     * on each tick
+     */
+    fun configXPTimer(progressBar: ProgressBar, xpLeftText: TextView) {
+        val challengeTime = getCurrentQuestion().time * 1000
+        progressBar.max = challengeTime
+        countDown = configureXPViews(challengeTime.toLong(), progressBar, xpLeftText)
+    }
+
+    fun pauseXP() {
+        countDown.cancel()
+    }
+
+    private fun configureXPViews(challengeTime: Long, progressBar: ProgressBar, xpLeftText: TextView): CountDownTimer {
+        return object : CountDownTimer(challengeTime, 10) {
 
             @SuppressLint("SetTextI18n")
             override fun onTick(millisUntilFinished: Long) {
@@ -126,18 +148,8 @@ class PracticeController(val context: PracticeFragment, challengeNames: ArrayLis
         }
     }
 
-
-    fun configXPTimer(progressBar: ProgressBar, xpLeftText: TextView) {
-        progressBar.max = getCurrentQuestion().time * 1000
-        countDown = xpTimerInit((getCurrentQuestion().time * 1000).toLong(), progressBar, xpLeftText).start()
-    }
-
-    fun pauseXP() {
-        countDown.cancel()
-    }
-
     fun resumeXP(progressBar: ProgressBar, xpLeftText: TextView) {
-        countDown = xpTimerInit(millisLeft, progressBar, xpLeftText).start()
+        countDown = configureXPViews(millisLeft, progressBar, xpLeftText).start()
     }
 
     fun resetCountdown(): Int {
@@ -191,27 +203,6 @@ class PracticeController(val context: PracticeFragment, challengeNames: ArrayLis
     }
 
     /**
-     * Appends [text] to the current [inputView]
-     */
-    fun insertToAnswer(text: String) {
-        this.inputView?.insertText(text)
-    }
-
-    /**
-     * Sets the current [inputView] to specified [ChallengeTextInput] view
-     */
-    fun setInputView(challengeTextInput: ChallengeTextInput) {
-        this.inputView = challengeTextInput
-    }
-
-    /**
-     * Deletes text from the current [inputView]
-     */
-    fun deleteAnswer() {
-        this.inputView?.deleteText()
-    }
-
-    /**
      * Defines an observable that waits for 2 seconds and then evaluates an expression using the
      * [ExprEvaluator] class to ensure that the math engine is loaded into runtime memory.
      *
@@ -246,9 +237,6 @@ class PracticeController(val context: PracticeFragment, challengeNames: ArrayLis
      * the context of the state of the database transactions
      */
     fun endSession(didComplete: Boolean): Observable<Unit> {
-        if (didComplete) {
-            sessionEndMP.start()
-        }
         return Observable.fromCallable {
             if (didComplete) {
                 SystemClock.sleep(2000)

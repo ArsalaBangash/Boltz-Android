@@ -19,19 +19,26 @@
         android:layout_height="match_parent"
         android:alpha="0">
 
-        <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/feedback_correct_anim"
+        <FrameLayout
+            android:id="@+id/feedback_animation_container"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            app:lottie_fileName="correct_check.json"
-            app:lottie_scale="0.5" />
+            android:layout_centerInParent="true">
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/feedback_anim_check"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:lottie_fileName="correct_check.json"
+                app:lottie_scale="0.5" />
+
+        </FrameLayout>
 
         <TextView
             android:id="@+id/feedback_xp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/feedback_correct_anim"
+            android:layout_below="@id/feedback_animation_container"
             android:layout_centerInParent="true"
             android:layout_marginTop="12dp"
             android:textColor="@color/colorGoldDark"

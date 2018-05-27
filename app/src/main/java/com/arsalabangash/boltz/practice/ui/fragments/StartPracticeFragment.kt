@@ -24,6 +24,7 @@ class StartPracticeFragment : Fragment() {
     private lateinit var sessionIntent: Intent
     private lateinit var challengeNames: Array<String>
 
+
     override fun onAttach(context: Context?) {
         super.onAttach(context)
         sessionIntent = Intent(context, PracticeActivity::class.java)

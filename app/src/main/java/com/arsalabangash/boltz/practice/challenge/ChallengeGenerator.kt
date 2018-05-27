@@ -12,7 +12,7 @@ class ChallengeGenerator(challengeLevel: String, val challengeNames: ArrayList<S
     @Inject
     lateinit var challengeUtils: ChallengeUtils
     private val challengeTypes = ArrayList<() -> Challenge>()
-    val classicChallengeOps = arrayListOf<MathOperation>()
+    private val classicChallengeOps = arrayListOf<MathOperation>()
     private lateinit var level: Level
     private val randomGen = Random()
 
@@ -45,10 +45,10 @@ class ChallengeGenerator(challengeLevel: String, val challengeNames: ArrayList<S
     }
 
     fun generateChallenge(): Challenge {
-        if (classicChallengeOps.isNotEmpty()) {
+        return if (classicChallengeOps.isNotEmpty()) {
             if (randomGen.nextInt(challengeNames.size) < classicChallengeOps.size) {
-                return challengeTypes[challengeTypes.lastIndex].invoke()
-            } else return challengeTypes[randomGen.nextInt(challengeTypes.size - 1)].invoke()
-        } else return challengeTypes[randomGen.nextInt(challengeTypes.size)].invoke()
+                challengeTypes[challengeTypes.lastIndex].invoke()
+            } else challengeTypes[randomGen.nextInt(challengeTypes.size - 1)].invoke()
+        } else challengeTypes[randomGen.nextInt(challengeTypes.size)].invoke()
     }
 }

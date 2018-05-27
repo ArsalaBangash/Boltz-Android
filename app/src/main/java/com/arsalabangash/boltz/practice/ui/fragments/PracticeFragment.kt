@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import com.arsalabangash.boltz.practice.R
+import com.arsalabangash.boltz.practice.challenge.ChallengeQueue
 import com.arsalabangash.boltz.practice.models.PracticeOptions
 import com.arsalabangash.boltz.practice.ui.activities.BoltzPracticeActivity
 import com.arsalabangash.boltz.practice.ui.adapters.ChallengesViewAdapter
@@ -37,6 +38,7 @@ class PracticeFragment : Fragment() {
     private var sessionPaused = false
     internal lateinit var controller: PracticeController
     private lateinit var progressAnimator: ObjectAnimator
+    private lateinit var inputView: ChallengeTextInput
 
     private lateinit var boltzPracticeActivity: BoltzPracticeActivity
     private lateinit var practiceView: View
@@ -50,6 +52,7 @@ class PracticeFragment : Fragment() {
         boltzPracticeActivity = activity as BoltzPracticeActivity
         practiceOptions = boltzPracticeActivity.getPracticeOptions()
         controller = PracticeController(this, practiceOptions.practiceChallenges, practiceOptions.level, boltzPracticeActivity)
+
         bindViews(fragmentView)
         mathContentFadeIn = ObjectAnimator.ofFloat(mathContent, "alpha", 1f)
         mathContentFadeIn.duration = 1000
@@ -89,7 +92,7 @@ class PracticeFragment : Fragment() {
         sessionProgressbar.max = practiceOptions.questionCount
     }
 
-    fun startPractice(showTutorial: Boolean) {
+    private fun startPractice(showTutorial: Boolean) {
         progressAnimator.cancel()
         readyStateProgress.animate().alpha(0f)
 
@@ -183,7 +186,7 @@ class PracticeFragment : Fragment() {
         tutorialSequence.start()
     }
 
-    fun showTutorialDialog() {
+    private fun showTutorialDialog() {
         AlertDialog.Builder(boltzPracticeActivity)
                 .setTitle("Welcome to your Math Practice Session!")
                 .setMessage("Would you like to take a short tour to see how everything works?")
@@ -204,7 +207,7 @@ class PracticeFragment : Fragment() {
         xpCountdownBar.progress = time
     }
 
-    fun configureCountDownTimer() {
+    private fun configureCountDownTimer() {
         this.controller.configXPTimer(xpCountdownBar, xpLeftText)
     }
 
@@ -247,18 +250,16 @@ class PracticeFragment : Fragment() {
         mathContent.animate().alpha(1f)
     }
 
-    fun getPracticeOptions() = practiceOptions
-
     fun inputButtonPressed(view: View) {
-        this.controller.insertToAnswer(view.tag.toString())
+        inputView.insertText(view.tag.toString())
     }
 
     fun backspacePressed() {
-        this.controller.deleteAnswer()
+        inputView.deleteText()
     }
 
     fun setInput(view: View) {
-        this.controller.setInputView(view as ChallengeTextInput)
+        inputView = view as ChallengeTextInput
     }
 
     fun stopPractice() {
@@ -267,7 +268,6 @@ class PracticeFragment : Fragment() {
             this.controller.pauseXP()
         }
     }
-
 
     fun resumePractice() {
         if (sessionPaused) {

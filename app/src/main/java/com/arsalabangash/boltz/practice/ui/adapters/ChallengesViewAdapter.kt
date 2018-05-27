@@ -42,7 +42,7 @@ class ChallengesViewAdapter(val appContext: PracticeFragment, val challenges: Ch
         // Focus on the Text Input view if there is one
         if (challengeView.answerView != null) {
             challengeView.answerView.requestFocus()
-            appContext.controller.setInputView(challengeView.answerView as ChallengeTextInput)
+            appContext.setInput(challengeView.answerView as ChallengeTextInput)
         }
         return challengeView
     }

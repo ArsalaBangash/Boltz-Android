@@ -23,7 +23,6 @@ import kotlin.math.max
 
 class CustomizeFragment : Fragment() {
 
-
     //View Declarations
     private lateinit var challengeListView: RecyclerView
     private lateinit var challengeNames: Array<String>
@@ -52,7 +51,7 @@ class CustomizeFragment : Fragment() {
         return fragmentView
     }
 
-    fun bindViews(fragmentView: View) {
+    private fun bindViews(fragmentView: View) {
         bindDifficulty(fragmentView)
         bindChallengeList(fragmentView)
         bindQuestionCount(fragmentView)
