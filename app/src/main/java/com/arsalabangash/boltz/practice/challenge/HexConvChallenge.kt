@@ -1,10 +1,10 @@
 package com.arsalabangash.boltz.practice.challenge
 
-import com.arsalabangash.boltz.practice.models.ChallengeModel
 import com.arsalabangash.boltz.practice.R
-import com.arsalabangash.boltzengine.engine.HexChallenge
-import com.arsalabangash.boltzengine.engine.enums.Level
-import com.arsalabangash.boltzengine.engine.generateHexQuestion
+import com.arsalabangash.boltz.practice.models.ChallengeModel
+import com.arsalabangash.boltz.practice.engine.HexChallenge
+import com.arsalabangash.boltz.practice.engine.enums.Level
+import com.arsalabangash.boltz.practice.engine.generateHexQuestion
 
 class HexConvChallenge(val level: Level, val challengeUtils: ChallengeUtils) :
         Challenge(level, challengeUtils) {

@@ -7,5 +7,6 @@ data class PracticeOptions(
         val level: String,
         val questionCount: Int,
         val isVolumeOn: Boolean,
-        val showPracticeTutorial: Boolean
+        val showPracticeTutorial: Boolean,
+        val isPremiumUser: Boolean
 )

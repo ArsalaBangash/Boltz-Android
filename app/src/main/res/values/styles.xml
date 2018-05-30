@@ -1,19 +1,18 @@
 <resources>
 
 
-    <style name="BoltzTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="BoltzPracticeTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="colorControlNormal">@color/colorWhite</item>
-        <item name="colorControlHighlight">@color/colorSecondary</item>
         <item name="windowActionBarOverlay">false</item>
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:actionBarStyle">@style/ActionBarTheme</item>
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="ActionBarTheme" parent="BoltzTheme">
+    <style name="ActionBarTheme" parent="BoltzPracticeTheme">
         <item name="android:windowActionBarOverlay">true</item>
         <item name="android:textColor">@color/colorWhite</item>
     </style>

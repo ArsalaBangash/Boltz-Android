@@ -8,10 +8,9 @@
 
     <Button
         android:id="@+id/customize_difficulty_button"
-        style="?android:attr/borderlessButtonStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/colorWhite"
+        android:backgroundTint="@color/colorSecondary"
         android:drawableLeft="@drawable/ic_difficulty"
         android:drawablePadding="6dp"
         android:text="Difficulty: Normal"
@@ -22,10 +21,9 @@
 
     <Button
         android:id="@+id/customize_questions_button"
-        style="?android:attr/borderlessButtonStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/colorWhite"
+        android:backgroundTint="@color/colorSecondary"
         android:drawableLeft="@drawable/ic_checklist"
         android:drawablePadding="6dp"
         android:text="Questions: 8"

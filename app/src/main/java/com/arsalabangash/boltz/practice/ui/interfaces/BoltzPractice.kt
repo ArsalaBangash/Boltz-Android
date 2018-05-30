@@ -24,9 +24,9 @@ interface BoltzPractice {
         practiceFragment.checkAnswer()
     }
 
-    fun correctAnswer(xp: Long) {
+    fun correctAnswer(xp: Long, streak: Int) {
         practiceFragment.correctAnswer()
-        answerFeedbackFragment.correctAnswer(xp)
+        answerFeedbackFragment.correctAnswer(xp, streak)
     }
 
     fun incorrectAnswer() {

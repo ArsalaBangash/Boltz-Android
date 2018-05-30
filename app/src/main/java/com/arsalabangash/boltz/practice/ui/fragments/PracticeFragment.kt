@@ -9,7 +9,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import com.arsalabangash.boltz.practice.R
-import com.arsalabangash.boltz.practice.challenge.ChallengeQueue
 import com.arsalabangash.boltz.practice.models.PracticeOptions
 import com.arsalabangash.boltz.practice.ui.activities.BoltzPracticeActivity
 import com.arsalabangash.boltz.practice.ui.adapters.ChallengesViewAdapter
@@ -89,6 +88,7 @@ class PracticeFragment : Fragment() {
 
         xpCountdownBar = fragmentView.findViewById(R.id.practice_xp_countdown)
         sessionProgressbar = fragmentView.findViewById(R.id.practice_progress)
+        sessionProgressbar.progress = 0
         sessionProgressbar.max = practiceOptions.questionCount
     }
 

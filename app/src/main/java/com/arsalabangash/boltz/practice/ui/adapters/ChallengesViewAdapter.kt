@@ -10,7 +10,6 @@ import com.arsalabangash.boltz.practice.challenge.RadianTrigChallenge
 import com.arsalabangash.boltz.practice.ui.fragments.PracticeFragment
 import com.arsalabangash.boltz.practice.ui.views.ChallengeTextInput
 import com.arsalabangash.boltz.practice.ui.views.ChallengeView
-
 import kotlinx.android.synthetic.main.input_factorization.view.*
 import kotlinx.android.synthetic.main.input_multiple_choice.view.*
 

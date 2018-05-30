@@ -1,21 +1,20 @@
 package com.arsalabangash.boltz.practice.challenge
 
-import com.arsalabangash.boltz.practice.BoltzPracticeApp
+import android.content.Context
 import com.arsalabangash.boltz.practice.utils.TrigMapProvider
-import com.arsalabangash.boltzengine.engine.FactorizationGenerator
-import com.arsalabangash.boltzengine.engine.InfixConverter
-import com.arsalabangash.boltzengine.engine.LatexConverter
-import com.arsalabangash.boltzengine.engine.enums.Level
-import com.arsalabangash.boltzengine.engine.enums.MathOperation
-import com.arsalabangash.boltzengine.engine.expressions.ExprGenerator
-import com.arsalabangash.boltzengine.engine.expressions.ExprToken
+import com.arsalabangash.boltz.practice.engine.FactorizationGenerator
+import com.arsalabangash.boltz.practice.engine.InfixConverter
+import com.arsalabangash.boltz.practice.engine.LatexConverter
+import com.arsalabangash.boltz.practice.engine.enums.Level
+import com.arsalabangash.boltz.practice.engine.enums.MathOperation
+import com.arsalabangash.boltz.practice.engine.expressions.ExprGenerator
+import com.arsalabangash.boltz.practice.engine.expressions.ExprToken
 import io.reactivex.Observable
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import org.matheclipse.core.eval.ExprEvaluator
 import org.matheclipse.core.interfaces.IExpr
-import javax.inject.Inject
 
 /**
  * This class acts as a Singleton that contains utility classes for challenge evaluation, generation
@@ -23,32 +22,40 @@ import javax.inject.Inject
  */
 class ChallengeUtils {
 
-    @Inject
     lateinit var exprEvaluator: ExprEvaluator
-    @Inject
     lateinit var infixConverter: InfixConverter
-    @Inject
     lateinit var latexConverter: LatexConverter
-    @Inject
     lateinit var exprGenerator: ExprGenerator
-    @Inject
     lateinit var factorizationGenerator: FactorizationGenerator
-    @Inject
     lateinit var trigMapProvider: TrigMapProvider
 
-    init {
-        BoltzPracticeApp.component.inject(this)
-    }
+    companion object {
+        @Volatile
+        private var INSTANCE: ChallengeUtils? = null
 
-    /**
-     * Asynchronously calls the evaluate function of the ExprEvaluator class so that all the
-     * internal classes associated with evaluation are loaded into runtime memory
-     */
-    fun initialize() {
-        Observable.fromCallable { evaluate("1") }
-                .subscribeOn(Schedulers.computation())
-                .subscribe()
-                .dispose()
+        fun getInstance(context: Context) =
+                INSTANCE ?: synchronized(this) {
+                    INSTANCE ?: buildUtils(context).also { INSTANCE = it }
+                }
+
+        /**
+         * Asynchronously calls the evaluate function of the ExprEvaluator class so that all the
+         * internal classes associated with evaluation are loaded into runtime memory
+         */
+        private fun buildUtils(context: Context): ChallengeUtils {
+            val utils = ChallengeUtils()
+            utils.exprEvaluator = ExprEvaluator()
+            utils.infixConverter = InfixConverter()
+            utils.latexConverter = LatexConverter()
+            utils.exprGenerator = ExprGenerator()
+            utils.factorizationGenerator = FactorizationGenerator()
+            utils.trigMapProvider = TrigMapProvider(context)
+            Observable.fromCallable { utils.evaluate("1") }
+                    .subscribeOn(Schedulers.computation())
+                    .subscribe()
+                    .dispose()
+            return utils
+        }
 
     }
 

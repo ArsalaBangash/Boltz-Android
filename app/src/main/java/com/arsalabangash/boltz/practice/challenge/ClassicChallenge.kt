@@ -1,10 +1,10 @@
 package com.arsalabangash.boltz.practice.challenge
 
-import com.arsalabangash.boltz.practice.models.ChallengeModel
 import com.arsalabangash.boltz.practice.R
-import com.arsalabangash.boltzengine.engine.enums.Level
-import com.arsalabangash.boltzengine.engine.enums.MathOperation
-import com.arsalabangash.boltzengine.engine.expressions.ExprToken
+import com.arsalabangash.boltz.practice.models.ChallengeModel
+import com.arsalabangash.boltz.practice.engine.enums.Level
+import com.arsalabangash.boltz.practice.engine.enums.MathOperation
+import com.arsalabangash.boltz.practice.engine.expressions.ExprToken
 import java.util.*
 
 class ClassicChallenge(val level: Level, val utils: ChallengeUtils,

@@ -20,7 +20,7 @@ abstract class BoltzPracticeActivity : AppCompatActivity(), BoltzPractice {
     override val practiceFragment: PracticeFragment = PracticeFragment()
     override val answerFeedbackFragment: AnswerFeedbackFragment = AnswerFeedbackFragment()
     private lateinit var endPracticeDialog: AlertDialog
-    private lateinit var finishIntent: Intent
+    protected lateinit var finishIntent: Intent
     private lateinit var sharedPref: SharedPreferences
     private lateinit var practiceOptions: PracticeOptions
 
@@ -83,7 +83,9 @@ abstract class BoltzPracticeActivity : AppCompatActivity(), BoltzPractice {
                 isVolumeOn = sharedPref.getBoolean(getString(R.string.is_volume_on), true),
                 questionCount = this.intent.getIntExtra(getString(R.string.question_count), 8),
                 showPracticeTutorial = this.intent.getBooleanExtra(getString(R.string.show_practice_tutorial), false),
-                level = this.intent.getStringExtra(getString(R.string.practice_level))
+                level = this.intent.getStringExtra(getString(R.string.practice_level)),
+                isPremiumUser = this.intent.getBooleanExtra(getString(R.string.is_premium_user), false)
+
         )
     }
 

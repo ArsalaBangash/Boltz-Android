@@ -145,3 +145,7 @@ class TrigMapProvider(context: Context) {
 }
 
 data class TrigChallengeData(var trigFunction: String?, var degrees: String?)
+
+fun Array<String>.getRandomElement(): String {
+    return this.get(Random().nextInt(this.size - 1))
+}

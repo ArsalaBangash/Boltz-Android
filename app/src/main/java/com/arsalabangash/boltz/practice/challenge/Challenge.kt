@@ -1,7 +1,7 @@
 package com.arsalabangash.boltz.practice.challenge
 
 import com.arsalabangash.boltz.practice.models.ChallengeModel
-import com.arsalabangash.boltzengine.engine.enums.Level
+import com.arsalabangash.boltz.practice.engine.enums.Level
 
 abstract class Challenge(level: Level, challengeUtils: ChallengeUtils) {
 

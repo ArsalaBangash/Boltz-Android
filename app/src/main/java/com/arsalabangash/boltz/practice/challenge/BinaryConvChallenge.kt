@@ -2,9 +2,9 @@ package com.arsalabangash.boltz.practice.challenge
 
 import com.arsalabangash.boltz.practice.R
 import com.arsalabangash.boltz.practice.models.ChallengeModel
-import com.arsalabangash.boltzengine.engine.BinaryChallenge
-import com.arsalabangash.boltzengine.engine.enums.Level
-import com.arsalabangash.boltzengine.engine.generateBinaryQuestion
+import com.arsalabangash.boltz.practice.engine.BinaryChallenge
+import com.arsalabangash.boltz.practice.engine.enums.Level
+import com.arsalabangash.boltz.practice.engine.generateBinaryQuestion
 
 class BinaryConvChallenge(val level: Level, val challengeUtils: ChallengeUtils) :
         Challenge(level, challengeUtils) {

@@ -1,9 +1,9 @@
 package com.arsalabangash.boltz.practice.challenge
 
-import com.arsalabangash.boltz.practice.models.ChallengeModel
 import com.arsalabangash.boltz.practice.R
+import com.arsalabangash.boltz.practice.models.ChallengeModel
 import com.arsalabangash.boltz.practice.utils.TrigChallengeData
-import com.arsalabangash.boltzengine.engine.enums.Level
+import com.arsalabangash.boltz.practice.engine.enums.Level
 import java.util.*
 
 

@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.arsalabangash.boltz.practice.R
 import com.arsalabangash.boltz.practice.ui.fragments.CustomizeFragment
-import com.arsalabangash.boltz.practice.ui.fragments.StartPracticeFragment
+import com.arsalabangash.boltz.practice.ui.fragments.StartPracticeFragmentImpl
 
 class MainActivity : AppCompatActivity() {
 
@@ -15,7 +15,7 @@ class MainActivity : AppCompatActivity() {
         supportFragmentManager
                 .beginTransaction()
                 .replace(R.id.fragment_container_customize, CustomizeFragment.newInstance(), "Customize Fragment")
-                .replace(R.id.fragment_container_startpractice, StartPracticeFragment.newInstance(), "StartPractice Fragment")
+                .replace(R.id.fragment_container_startpractice, StartPracticeFragmentImpl.newInstance(), "StartPractice Fragment")
                 .commit()
     }
 }

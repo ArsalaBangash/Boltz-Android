@@ -8,7 +8,6 @@ import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.RadioButton
 import android.widget.TextView
-import com.arsalabangash.boltz.practice.BoltzPracticeApp
 import com.arsalabangash.boltz.practice.challenge.*
 import com.arsalabangash.boltz.practice.models.ChallengeModel
 import com.arsalabangash.boltz.practice.ui.activities.BoltzPracticeActivity
@@ -19,17 +18,14 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.schedulers.Schedulers
 import java.util.*
-import javax.inject.Inject
 
 
 class PracticeController(val context: PracticeFragment, challengeNames: ArrayList<String>,
                          val level: String, val boltzPracticeActivity: BoltzPracticeActivity) {
 
     val challenges = ChallengeQueue()
-
-    @Inject
-    lateinit var challengeUtils: ChallengeUtils
-    private val challengeGenerator: ChallengeGenerator
+    val challengeUtils = ChallengeUtils.getInstance(boltzPracticeActivity)
+    private val challengeGenerator = ChallengeGenerator(challengeUtils, level, challengeNames)
     var userAnswers = ArrayList<View>()
     private lateinit var countDown: CountDownTimer
     private var challengeStartTime: Long = 0
@@ -42,17 +38,13 @@ class PracticeController(val context: PracticeFragment, challengeNames: ArrayLis
 
     private var correctCount: Int = 0
     private var attemptCount: Int = 0
-    private var conceptCount: Int
+    private var conceptCount: Int = challengeNames.size
 
     init {
-        BoltzPracticeApp.component.inject(this)
-        challengeGenerator = ChallengeGenerator(level, challengeNames)
-        conceptCount = challengeNames.size
         setDifficultyXP()
-
     }
 
-    fun setDifficultyXP() {
+    private fun setDifficultyXP() {
         when (level) {
             "Basic" -> {
                 BASE_XP = 250
@@ -80,6 +72,7 @@ class PracticeController(val context: PracticeFragment, challengeNames: ArrayLis
     private fun handleCorrect() {
         with(challenges) {
             dequeHeadChallenge()
+            correctInRow++
             if (numIncorrect > 0) {
                 numIncorrect--
                 incorrectInRow = 0
@@ -98,6 +91,7 @@ class PracticeController(val context: PracticeFragment, challengeNames: ArrayLis
      */
     private fun handleIncorrect() {
         with(challenges) {
+            correctInRow = 0
             if (numIncorrect > incorrectInRow) {
                 addChallenge(dequeHeadChallenge())
                 incorrectInRow++
@@ -124,7 +118,7 @@ class PracticeController(val context: PracticeFragment, challengeNames: ArrayLis
     fun configXPTimer(progressBar: ProgressBar, xpLeftText: TextView) {
         val challengeTime = getCurrentQuestion().time * 1000
         progressBar.max = challengeTime
-        countDown = configureXPViews(challengeTime.toLong(), progressBar, xpLeftText)
+        countDown = configureXPViews(challengeTime.toLong(), progressBar, xpLeftText).start()
     }
 
     fun pauseXP() {
@@ -172,7 +166,7 @@ class PracticeController(val context: PracticeFragment, challengeNames: ArrayLis
                         totalXP += xp
                         handleCorrect()
                         correctCount++
-                        this.boltzPracticeActivity.correctAnswer(xp)
+                        this.boltzPracticeActivity.correctAnswer(xp, challenges.correctInRow)
                     } else {
                         this.boltzPracticeActivity.incorrectAnswer()
                         handleIncorrect()
@@ -213,8 +207,7 @@ class PracticeController(val context: PracticeFragment, challengeNames: ArrayLis
         return Observable.create<Any> { sub ->
             SystemClock.sleep(2000)
             challengeUtils.evaluate("1")
-            this.addQuestion()
-            this.addQuestion()
+            addQuestion()
             sub.onNext(0)
         }
                 .subscribeOn(Schedulers.computation())

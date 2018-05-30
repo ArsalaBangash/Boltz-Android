@@ -11,6 +11,7 @@ class ChallengeQueue : java.util.concurrent.LinkedBlockingDeque<Challenge>() {
 
     var numIncorrect: Int = 0
     var incorrectInRow: Int = 0
+    var correctInRow: Int = 0
 
     fun getHeadChallenge(): Challenge {
         return super.peek()

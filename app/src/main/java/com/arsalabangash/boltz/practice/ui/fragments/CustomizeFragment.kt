@@ -16,7 +16,6 @@ import android.widget.Button
 import android.widget.LinearLayout
 import com.arsalabangash.boltz.practice.R
 import com.arsalabangash.boltz.practice.challenge.ChallengeData
-import com.arsalabangash.boltz.practice.ui.activities.MainActivity
 import com.arsalabangash.boltz.practice.ui.adapters.ChallengeListAdapter
 import kotlinx.android.synthetic.main.fragment_customize.view.*
 import kotlin.math.max
@@ -27,7 +26,6 @@ class CustomizeFragment : Fragment() {
     private lateinit var challengeListView: RecyclerView
     private lateinit var challengeNames: Array<String>
     private lateinit var challengeIcons: TypedArray
-    private lateinit var mainActivity: MainActivity
     private lateinit var difficultyButton: Button
     private lateinit var questionCountButton: Button
 
@@ -44,7 +42,6 @@ class CustomizeFragment : Fragment() {
         val fragmentView = inflater.inflate(R.layout.fragment_customize, container, false)
         challengeNames = resources.getStringArray(R.array.challenge_types)
         challengeIcons = resources.obtainTypedArray(R.array.challenge_icons)
-        mainActivity = activity as MainActivity
         sharedPref = PreferenceManager.getDefaultSharedPreferences(activity)
 
         bindViews(fragmentView)
@@ -61,7 +58,7 @@ class CustomizeFragment : Fragment() {
     private fun bindChallengeList(fragmentView: View) {
         //Binds the challenge list Recycler View and populates it with practiceChallenges
         challengeListView = fragmentView.customize_challenge_list
-        challengeListView.layoutManager = LinearLayoutManager(mainActivity, LinearLayout.VERTICAL, false)
+        challengeListView.layoutManager = LinearLayoutManager(activity, LinearLayout.VERTICAL, false)
         challengeNames.indices.mapTo(challengeArray) {
             ChallengeData(challengeIcons.getDrawable(it), challengeNames[it])
         }
@@ -79,7 +76,7 @@ class CustomizeFragment : Fragment() {
 
     private fun bindQuestionCount(fragmentView: View) {
         questionCountButton = fragmentView.customize_questions_button
-        val questionCount = sharedPref.getInt("questionCount", 5)
+        val questionCount = sharedPref.getInt(getString(R.string.question_count), 5)
         questionCountButton.text = "Questions: $questionCount"
         questionCountButton.setOnClickListener { incrementQuestionCount() }
     }
