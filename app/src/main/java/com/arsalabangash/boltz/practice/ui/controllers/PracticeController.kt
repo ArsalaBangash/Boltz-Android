@@ -224,13 +224,14 @@ class PracticeController(val context: PracticeFragment, challengeNames: ArrayLis
         totalTime += timeTaken
     }
 
-    fun getPracticeData(): PracticeData {
+    fun getPracticeData(didComplete: Boolean): PracticeData {
         return PracticeData(
                 challengeModels = challengeModels,
                 correctCount = correctCount,
                 attemptCount = attemptCount,
                 totalXP = totalXP,
-                totalTime = totalTime)
+                totalTime = totalTime,
+                didComplete = didComplete)
     }
 
     /**
@@ -243,7 +244,7 @@ class PracticeController(val context: PracticeFragment, challengeNames: ArrayLis
             if (didComplete) {
                 SystemClock.sleep(2000)
             }
-            getPracticeData()
+            getPracticeData(didComplete)
         }
                 .subscribeOn(Schedulers.computation())
                 .observeOn(AndroidSchedulers.mainThread())

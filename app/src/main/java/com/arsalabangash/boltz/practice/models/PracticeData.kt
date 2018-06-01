@@ -7,4 +7,5 @@ data class PracticeData(
         val correctCount: Int,
         val attemptCount: Int,
         val totalTime: Long,
-        val totalXP: Long)
+        val totalXP: Long,
+        val didComplete: Boolean)

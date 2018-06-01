@@ -69,7 +69,7 @@ abstract class BoltzPracticeActivity : AppCompatActivity(), BoltzPractice {
         })
         endSessionDialogBuilder.setPositiveButton("QUIT", { dialog: DialogInterface, which: Int ->
             run {
-                endSession(this.practiceFragment.controller.getPracticeData())
+                endSession(this.practiceFragment.controller.getPracticeData(false))
             }
         })
         endSessionDialogBuilder.setTitle("Quit current session?")
