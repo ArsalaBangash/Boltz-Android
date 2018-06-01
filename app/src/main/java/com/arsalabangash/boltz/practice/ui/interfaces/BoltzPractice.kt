@@ -1,6 +1,7 @@
 package com.arsalabangash.boltz.practice.ui.interfaces
 
 import android.view.View
+import com.arsalabangash.boltz.practice.models.PracticeData
 import com.arsalabangash.boltz.practice.ui.fragments.AnswerFeedbackFragment
 import com.arsalabangash.boltz.practice.ui.fragments.PracticeFragment
 
@@ -37,4 +38,6 @@ interface BoltzPractice {
     fun answerFeedbackFinished() {
         practiceFragment.answerFeedbackFinished()
     }
+
+    fun endSession(practiceData: PracticeData)
 }

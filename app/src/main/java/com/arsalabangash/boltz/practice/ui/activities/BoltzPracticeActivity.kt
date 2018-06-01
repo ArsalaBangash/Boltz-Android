@@ -9,6 +9,7 @@ import android.os.Bundle
 import android.preference.PreferenceManager
 import android.support.v7.app.AppCompatActivity
 import com.arsalabangash.boltz.practice.R
+import com.arsalabangash.boltz.practice.models.PracticeData
 import com.arsalabangash.boltz.practice.models.PracticeOptions
 import com.arsalabangash.boltz.practice.ui.fragments.AnswerFeedbackFragment
 import com.arsalabangash.boltz.practice.ui.fragments.PracticeFragment
@@ -23,6 +24,7 @@ abstract class BoltzPracticeActivity : AppCompatActivity(), BoltzPractice {
     protected lateinit var finishIntent: Intent
     private lateinit var sharedPref: SharedPreferences
     private lateinit var practiceOptions: PracticeOptions
+    protected lateinit var practiceData: PracticeData
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -67,7 +69,7 @@ abstract class BoltzPracticeActivity : AppCompatActivity(), BoltzPractice {
         })
         endSessionDialogBuilder.setPositiveButton("QUIT", { dialog: DialogInterface, which: Int ->
             run {
-                endSession()
+                endSession(this.practiceFragment.controller.getPracticeData())
             }
         })
         endSessionDialogBuilder.setTitle("Quit current session?")
@@ -89,7 +91,7 @@ abstract class BoltzPracticeActivity : AppCompatActivity(), BoltzPractice {
         )
     }
 
-    fun endSession() {
+    override fun endSession(practiceData: PracticeData) {
         startActivity(finishIntent, android.app.ActivityOptions.makeCustomAnimation(this,
                 R.anim.slide_from_right, R.anim.slide_to_left).toBundle())
         finish()

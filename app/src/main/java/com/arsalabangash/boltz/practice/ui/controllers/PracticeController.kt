@@ -10,6 +10,7 @@ import android.widget.RadioButton
 import android.widget.TextView
 import com.arsalabangash.boltz.practice.challenge.*
 import com.arsalabangash.boltz.practice.models.ChallengeModel
+import com.arsalabangash.boltz.practice.models.PracticeData
 import com.arsalabangash.boltz.practice.ui.activities.BoltzPracticeActivity
 import com.arsalabangash.boltz.practice.ui.fragments.PracticeFragment
 import com.arsalabangash.boltz.practice.ui.views.MultipleChoiceGridView
@@ -18,7 +19,6 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.schedulers.Schedulers
 import java.util.*
-
 
 class PracticeController(val context: PracticeFragment, challengeNames: ArrayList<String>,
                          val level: String, val boltzPracticeActivity: BoltzPracticeActivity) {
@@ -30,7 +30,7 @@ class PracticeController(val context: PracticeFragment, challengeNames: ArrayLis
     private lateinit var countDown: CountDownTimer
     private var challengeStartTime: Long = 0
     private var millisLeft: Long = 0
-    private val challengeList = arrayListOf<ChallengeModel>()
+    private val challengeModels = arrayListOf<ChallengeModel>()
     private var totalXP: Long = 0
     private var totalTime: Long = 0
     private var BASE_XP: Int = 0
@@ -162,7 +162,7 @@ class PracticeController(val context: PracticeFragment, challengeNames: ArrayLis
                         val xp = (millisLeft / TIME_XP) + BASE_XP
                         getCurrentQuestion().markSolved()
                         getCurrentQuestion().setXP(xp)
-                        challengeList.add(getCurrentQuestion().model)
+                        challengeModels.add(getCurrentQuestion().model)
                         totalXP += xp
                         handleCorrect()
                         correctCount++
@@ -224,16 +224,26 @@ class PracticeController(val context: PracticeFragment, challengeNames: ArrayLis
         totalTime += timeTaken
     }
 
+    fun getPracticeData(): PracticeData {
+        return PracticeData(
+                challengeModels = challengeModels,
+                correctCount = correctCount,
+                attemptCount = attemptCount,
+                totalXP = totalXP,
+                totalTime = totalTime)
+    }
+
     /**
      * At the end of the session, the user's XP is updated and a [SessionModel] is
      * created and added to the database as well. An observable is sent to the context, notifying
      * the context of the state of the database transactions
      */
-    fun endSession(didComplete: Boolean): Observable<Unit> {
+    fun endSession(didComplete: Boolean): Observable<PracticeData> {
         return Observable.fromCallable {
             if (didComplete) {
                 SystemClock.sleep(2000)
             }
+            getPracticeData()
         }
                 .subscribeOn(Schedulers.computation())
                 .observeOn(AndroidSchedulers.mainThread())

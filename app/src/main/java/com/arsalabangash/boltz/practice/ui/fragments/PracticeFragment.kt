@@ -216,6 +216,7 @@ class PracticeFragment : Fragment() {
     }
 
     fun correctAnswer() {
+        sessionProgressbar.progress++
         if (sessionProgressbar.progress == practiceOptions.questionCount) {
             mathContent.animate().alpha(0f)
             endSession(didComplete = true)
@@ -226,7 +227,7 @@ class PracticeFragment : Fragment() {
         mathContent.animate().alpha(0f).duration = 2000
         this.controller.endSession(didComplete).subscribeBy(
                 onNext = {
-                    boltzPracticeActivity.endSession()
+                    boltzPracticeActivity.endSession(it)
                 }
         )
     }
@@ -239,7 +240,6 @@ class PracticeFragment : Fragment() {
         challengesPageAdapter.notifyDataSetChanged()
         challengeViewHolder.showNext()
         if (wasPrevCorrect) {
-            sessionProgressbar.progress++
             mathContent.alpha = 0f
         }
     }
