@@ -18,20 +18,26 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
 
 abstract class BoltzPracticeActivity : AppCompatActivity(), BoltzPractice {
 
+    //Fragments
     override val practiceFragment: PracticeFragment = PracticeFragment()
     override val answerFeedbackFragment: AnswerFeedbackFragment = AnswerFeedbackFragment()
+
     private lateinit var endPracticeDialog: AlertDialog
-    protected lateinit var finishIntent: Intent
     private lateinit var sharedPref: SharedPreferences
     private lateinit var practiceOptions: PracticeOptions
+
+    //Must be protected because they are used in the official app's child classes
+    protected lateinit var finishIntent: Intent
     protected lateinit var practiceData: PracticeData
+
+    fun getPracticeOptions() = practiceOptions
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         sharedPref = PreferenceManager.getDefaultSharedPreferences(this)
         setContentView(R.layout.activity_boltz_practice)
         practiceOptions = getPracticeOptionsData()
-        endPracticeDialog = getEndPracticeDialog()
+        endPracticeDialog = buildEndPracticeDialog()
         finishIntent = Intent(this, MainActivity::class.java)
         supportFragmentManager.beginTransaction()
                 .replace(R.id.fragment_container_practice, practiceFragment)
@@ -39,6 +45,7 @@ abstract class BoltzPracticeActivity : AppCompatActivity(), BoltzPractice {
                 .commit()
     }
 
+    //Necessary for algebraic 'x' font
     override fun attachBaseContext(newBase: Context?) {
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase))
     }
@@ -57,23 +64,24 @@ abstract class BoltzPracticeActivity : AppCompatActivity(), BoltzPractice {
         endPracticeDialog.show()
     }
 
-    fun getPracticeOptions() = practiceOptions
-
-    private fun getEndPracticeDialog(): AlertDialog {
+    /**
+     * Returns a Dialog that allows a user to quit their current practice session
+     */
+    private fun buildEndPracticeDialog(): AlertDialog {
         //Binds button logic related to the end session dialog
         val endSessionDialogBuilder = AlertDialog.Builder(this)
-        endSessionDialogBuilder.setNegativeButton("CANCEL", { dialog: DialogInterface, which: Int ->
+        endSessionDialogBuilder.setNegativeButton(getString(R.string.cancel), { dialog: DialogInterface, which: Int ->
             run {
                 endPracticeDialog.hide()
             }
         })
-        endSessionDialogBuilder.setPositiveButton("QUIT", { dialog: DialogInterface, which: Int ->
+        endSessionDialogBuilder.setPositiveButton(getString(R.string.quit), { dialog: DialogInterface, which: Int ->
             run {
                 endSession(this.practiceFragment.controller.getPracticeData(false))
             }
         })
-        endSessionDialogBuilder.setTitle("Quit current session?")
-        endSessionDialogBuilder.setMessage("Are you sure you want to quit? This session will be marked incomplete!")
+        endSessionDialogBuilder.setTitle(getString(R.string.dialog_end_session_title))
+        endSessionDialogBuilder.setMessage(getString(R.string.dialog_end_session_message))
         val endSessionDialog = endSessionDialogBuilder.create()
         endSessionDialog.setCancelable(false)
         return endSessionDialog
@@ -91,6 +99,9 @@ abstract class BoltzPracticeActivity : AppCompatActivity(), BoltzPractice {
         )
     }
 
+    /**
+     * Nothing to do with practiceData or ads, so simply navigate to the MainActivity
+     */
     override fun endSession(practiceData: PracticeData) {
         startActivity(finishIntent, android.app.ActivityOptions.makeCustomAnimation(this,
                 R.anim.slide_from_right, R.anim.slide_to_left).toBundle())

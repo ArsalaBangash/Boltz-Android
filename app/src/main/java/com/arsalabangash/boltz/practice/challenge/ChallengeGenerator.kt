@@ -5,6 +5,10 @@ import com.arsalabangash.boltz.practice.engine.enums.MathOperation
 import java.util.*
 import kotlin.collections.ArrayList
 
+/**
+ * Given a list of [challenges], this generator is responsible for returning a random
+ * Challenge whenever called upon to do so
+ */
 class ChallengeGenerator(val challengeUtils: ChallengeUtils, level: String, val challenges: ArrayList<String>) {
 
 
@@ -22,7 +26,7 @@ class ChallengeGenerator(val challengeUtils: ChallengeUtils, level: String, val 
         challenges.forEach { getChallenge(it) }
     }
 
-    fun getChallenge(challengeName: String) {
+    private fun getChallenge(challengeName: String) {
         when (challengeName) {
             "Addition" -> classicChallengeOps.add(MathOperation.Addition)
             "Subtraction" -> classicChallengeOps.add(MathOperation.Subtraction)

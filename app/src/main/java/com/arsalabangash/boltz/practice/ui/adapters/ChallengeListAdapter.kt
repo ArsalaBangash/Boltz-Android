@@ -32,7 +32,7 @@ class ChallengeListAdapter(private val challengeList: ArrayList<ChallengeData>) 
         return challengeList.size
     }
 
-    class ViewHolder(itemView: View, val sharedPref: SharedPreferences) : RecyclerView.ViewHolder(itemView) {
+    class ViewHolder(itemView: View, private val sharedPref: SharedPreferences) : RecyclerView.ViewHolder(itemView) {
 
         fun bindItems(challenge: ChallengeData) {
             itemView.challenge_list_check.isChecked = sharedPref.getBoolean(challenge.name, false)

@@ -43,7 +43,7 @@ class BinaryConvChallenge(val level: Level, val challengeUtils: ChallengeUtils) 
 
     override fun setLabel() {
         if (question.binaryToDec) {
-            label = "Convert from Binary to Decimal:"
+            label = "Convert from Binary:"
         } else {
             label = "Convert to Binary:"
         }

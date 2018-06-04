@@ -19,6 +19,9 @@ class ClassicChallenge(val level: Level, val utils: ChallengeUtils,
         initialize()
     }
 
+    /**
+     * Uses the engine to generate a question in the form of an ArrayList of ExprTokens
+     */
     override fun setQuestion() {
         var numberOps = Random().nextInt(2) + 1
         ops = arrayListOf<MathOperation>()

@@ -6,8 +6,7 @@ import android.view.View
 import android.widget.TextView
 import com.arsalabangash.boltz.practice.R
 import com.arsalabangash.boltz.practice.challenge.Challenge
-import com.arsalabangash.boltz.practice.challenge.DegreeTrigChallenge
-import com.arsalabangash.boltz.practice.challenge.RadianTrigChallenge
+import com.arsalabangash.boltz.practice.challenge.MultipleChoiceChallenge
 import katex.hourglass.`in`.mathlib.MathView
 import kotlinx.android.synthetic.main.input_multiple_choice.view.*
 import java.util.*
@@ -28,17 +27,13 @@ class ChallengeView(context: Context, challenge: Challenge) {
         val label: TextView = challengeView.findViewById(R.id.challenge_label)
         label.text = challenge.label
 
-        if (challenge is DegreeTrigChallenge) {
-            setMultipleChoices(challenge.multipleChoices)
-        }
-
-        if (challenge is RadianTrigChallenge) {
+        if (challenge is MultipleChoiceChallenge) {
             setMultipleChoices(challenge.multipleChoices)
         }
     }
 
     private fun setMultipleChoices(choices: ArrayList<String>) {
-        Collections.shuffle(choices)
+        choices.shuffle()
         challengeView.optionA.text = choices[0]
         challengeView.optionA.tag = choices[0]
         challengeView.optionB.text = choices[1]

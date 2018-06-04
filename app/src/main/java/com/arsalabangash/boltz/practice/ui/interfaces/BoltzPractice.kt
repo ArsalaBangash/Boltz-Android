@@ -5,6 +5,10 @@ import com.arsalabangash.boltz.practice.models.PracticeData
 import com.arsalabangash.boltz.practice.ui.fragments.AnswerFeedbackFragment
 import com.arsalabangash.boltz.practice.ui.fragments.PracticeFragment
 
+/**
+ * Defines methods needed by the Practice activity.
+ * Important because certain functionality needs to be implemented in the actual app.
+ */
 interface BoltzPractice {
     val practiceFragment: PracticeFragment
     val answerFeedbackFragment: AnswerFeedbackFragment

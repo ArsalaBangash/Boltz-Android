@@ -23,6 +23,10 @@ import kotlinx.android.synthetic.main.fragment_answer_feedback.view.*
 
 data class AnimationData(val composition: LottieComposition, val speed: Float, val scale: Float)
 
+/**
+ * This Fragment controls feedback shown to the user based on the state of the practice session
+ * after a challenge has been answered.
+ */
 class AnswerFeedbackFragment : Fragment() {
 
     private lateinit var boltzPracticeActivity: BoltzPracticeActivity
@@ -57,9 +61,6 @@ class AnswerFeedbackFragment : Fragment() {
         inCorrectMP = MediaPlayer.create(boltzPracticeActivity, R.raw.incorrect)
         bindViews(fragmentView)
         animations = hashMapOf(
-                "balloons.json" to AnimationData(
-                        LottieComposition.Factory.fromFileSync(boltzPracticeActivity,
-                                "balloons.json"), 6f, 1f),
                 "clap.json" to AnimationData(
                         LottieComposition.Factory.fromFileSync(boltzPracticeActivity,
                                 "clap.json"), 0.8f, 0.65f),
@@ -76,7 +77,7 @@ class AnswerFeedbackFragment : Fragment() {
         return fragmentView
     }
 
-    fun bindViews(fragmentView: View) {
+    private fun bindViews(fragmentView: View) {
         xpView = fragmentView.feedback_xp
         animationView = fragmentView.feedback_correct_anim
         correctFeedbackContainer = fragmentView.feedback_correct
@@ -84,27 +85,32 @@ class AnswerFeedbackFragment : Fragment() {
         streakView = fragmentView.feedback_streak
     }
 
+    /**
+     * When an challenge is correctly answered, the current streak is taken into account, then
+     * sounds and animations are played accordingly
+     */
     fun correctAnswer(xp: Long, streak: Int) {
         animateXP(xp)
         var animation = "correct_check.json"
-        if (streak <= 1) {
-            playSound(correctMP)
-        } else if (streak == 2) {
-            playSound(correct2MP)
-        } else if (streak == 3) {
-            playSound(correct3MP)
-            animation = streakAnimationNames.getRandomElement()
-            animateStreak(streak)
-        } else if (streak == 4) {
-            playSound(correct4MP)
-        } else if (streak % 5 == 0) {
-            playSound(correct5MP)
-            animation = streakAnimationNames.getRandomElement()
-            animateStreak(streak)
-        } else {
-            playSound(correct5MP)
-            animation = animationNames.getRandomElement()
-            animateStreak(streak)
+        when {
+            streak <= 1 -> playSound(correctMP)
+            streak == 2 -> playSound(correct2MP)
+            streak == 3 -> {
+                playSound(correct3MP)
+                animation = streakAnimationNames.getRandomElement()
+                animateStreak(streak)
+            }
+            streak == 4 -> playSound(correct4MP)
+            streak % 5 == 0 -> {
+                playSound(correct5MP)
+                animation = streakAnimationNames.getRandomElement()
+                animateStreak(streak)
+            }
+            else -> {
+                playSound(correct5MP)
+                animation = animationNames.getRandomElement()
+                animateStreak(streak)
+            }
         }
         correctFeedbackContainer.alpha = 1f
         playAnimation(animation)
@@ -117,9 +123,7 @@ class AnswerFeedbackFragment : Fragment() {
     }
 
     fun incorrectAnswer() {
-        if (boltzPracticeActivity.getPracticeOptions().isVolumeOn) {
-            inCorrectMP.start()
-        }
+        playSound(inCorrectMP)
         incorrectFeedbackContainer.alpha = 1f
         incorrectFeedbackContainer.animate().alpha(0f).duration = 800
     }
@@ -154,6 +158,9 @@ class AnswerFeedbackFragment : Fragment() {
         animateTextView(xpString.toString(), xpView)
     }
 
+    /**
+     * Animates the text in a 'Call of Duty' xp gained manner
+     */
     private fun animateTextView(text: String, textView: TextView) {
         textView.text = text
         textView.animate().alpha(1f).setDuration(100)

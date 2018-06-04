@@ -29,4 +29,9 @@
     <string name="practice_level">practiceLevel</string>
     <string name="difficulty">difficulty</string>
     <string name="is_premium_user">isPremiumUser</string>
+    <string name="dialog_end_session_message">Are you sure you want to quit? This session will be marked incomplete!</string>
+    <string name="dialog_end_session_title">Quit current session?</string>
+    <string name="cancel">CANCEL</string>
+    <string name="quit">QUIT</string>
+    <string name="practice_challenges_empty">Please select at least one Math concept</string>
 </resources>

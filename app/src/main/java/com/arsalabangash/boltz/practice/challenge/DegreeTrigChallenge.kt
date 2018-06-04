@@ -1,20 +1,22 @@
 package com.arsalabangash.boltz.practice.challenge
 
 import com.arsalabangash.boltz.practice.R
+import com.arsalabangash.boltz.practice.engine.enums.Level
 import com.arsalabangash.boltz.practice.models.ChallengeModel
 import com.arsalabangash.boltz.practice.utils.TrigChallengeData
-import com.arsalabangash.boltz.practice.engine.enums.Level
 import java.util.*
+import kotlin.collections.HashMap
 
-open class DegreeTrigChallenge(val level: Level, val challengeUtils: ChallengeUtils) :
-        Challenge(level, challengeUtils) {
+open class DegreeTrigChallenge(val level: Level, challengeUtils: ChallengeUtils) :
+        Challenge(level, challengeUtils), TrigChallenge, MultipleChoiceChallenge {
 
     val randomGenerator = Random()
     private var question: TrigChallengeData = TrigChallengeData(null, null)
     private var answer: String? = null
-    val multipleChoices = arrayListOf<String>()
-    val degreeMap = challengeUtils.trigMapProvider.getDegreeMap()
+    override val multipleChoices = arrayListOf<String>()
 
+    override val degreeMap = challengeUtils.trigMapProvider.getDegreeMap()
+    override val radianMap = HashMap<String, String>()
 
     init {
         checkStrategy = { s1, s2 ->
@@ -55,9 +57,12 @@ open class DegreeTrigChallenge(val level: Level, val challengeUtils: ChallengeUt
 
     }
 
-    fun addMultipleChoices() {
-        val choices = degreeMap.values.filter { it != answer }
-        Collections.shuffle(choices)
+    override fun addMultipleChoices() {
+        val choices = arrayListOf<String>()
+        for (choice in degreeMap.values) {
+            if (choice != answer) choices.add(choice)
+        }
+        choices.shuffle()
         multipleChoices.add(answer!!)
         (0..2).forEach {
             multipleChoices.add(choices[it])
@@ -66,10 +71,10 @@ open class DegreeTrigChallenge(val level: Level, val challengeUtils: ChallengeUt
     }
 
     override fun setTime() {
-        when (level) {
-            Level.Basic -> time = 35
-            Level.Normal -> time = 45
-            Level.Advanced -> time = 60
+        time = when (level) {
+            Level.Basic -> 35
+            Level.Normal -> 45
+            Level.Advanced -> 60
         }
     }
 

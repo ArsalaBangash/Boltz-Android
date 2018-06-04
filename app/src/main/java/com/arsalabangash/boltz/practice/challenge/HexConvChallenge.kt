@@ -53,9 +53,9 @@ class HexConvChallenge(val level: Level, val challengeUtils: ChallengeUtils) :
 
     override fun setLabel() {
         if (question.hexToDec) {
-            label = "Convert from Hexadecimal to Decimal:"
+            label = "Convert from Hex:"
         } else {
-            label = "Convert to Hexadecimal:"
+            label = "Convert to Hex:"
         }
     }
 

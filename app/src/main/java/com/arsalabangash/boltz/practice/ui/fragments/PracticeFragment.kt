@@ -11,9 +11,10 @@ import android.widget.*
 import com.arsalabangash.boltz.practice.R
 import com.arsalabangash.boltz.practice.models.PracticeOptions
 import com.arsalabangash.boltz.practice.ui.activities.BoltzPracticeActivity
-import com.arsalabangash.boltz.practice.ui.adapters.ChallengesViewAdapter
+import com.arsalabangash.boltz.practice.ui.adapters.ChallengeViewAdapter
 import com.arsalabangash.boltz.practice.ui.controllers.PracticeController
 import com.arsalabangash.boltz.practice.ui.views.ChallengeTextInput
+import com.arsalabangash.boltz.practice.utils.animateInfinite
 import com.arsalabangash.boltz.practice.utils.onAnimStart
 import com.getkeepsafe.taptargetview.TapTarget
 import com.getkeepsafe.taptargetview.TapTargetSequence
@@ -24,22 +25,25 @@ import kotlinx.android.synthetic.main.fragment_practice.view.*
 
 class PracticeFragment : Fragment() {
 
-    private lateinit var challengesPageAdapter: ChallengesViewAdapter
-    private lateinit var challengeViewHolder: AdapterViewAnimator
+
     private lateinit var xpCountdownBar: ProgressBar
     private lateinit var xpLeftText: TextView
     private lateinit var sessionProgressbar: ProgressBar
-    private lateinit var mathContent: RelativeLayout
+
+    private lateinit var challengeViewAdapter: ChallengeViewAdapter
+    private lateinit var challengeViewHolder: AdapterViewAnimator
+
+    private lateinit var practiceContent: RelativeLayout
     private lateinit var readyStateProgress: ProgressBar
     private lateinit var mathContentFadeIn: ObjectAnimator
     private lateinit var checkButton: Button
     private var sessionReady: Boolean = false
     private var sessionPaused = false
     internal lateinit var controller: PracticeController
-    private lateinit var progressAnimator: ObjectAnimator
+    private lateinit var readyStateAnimation: ObjectAnimator
     private lateinit var inputView: ChallengeTextInput
 
-    private lateinit var boltzPracticeActivity: BoltzPracticeActivity
+    lateinit var boltzPracticeActivity: BoltzPracticeActivity
     private lateinit var practiceView: View
     private lateinit var practiceOptions: PracticeOptions
 
@@ -50,16 +54,16 @@ class PracticeFragment : Fragment() {
         val fragmentView = inflater.inflate(R.layout.fragment_practice, container, false)
         boltzPracticeActivity = activity as BoltzPracticeActivity
         practiceOptions = boltzPracticeActivity.getPracticeOptions()
-        controller = PracticeController(this, practiceOptions.practiceChallenges, practiceOptions.level, boltzPracticeActivity)
+        controller = PracticeController(this, practiceOptions.practiceChallenges, practiceOptions.level)
 
         bindViews(fragmentView)
-        mathContentFadeIn = ObjectAnimator.ofFloat(mathContent, "alpha", 1f)
+        mathContentFadeIn = ObjectAnimator.ofFloat(practiceContent, "alpha", 1f)
         mathContentFadeIn.duration = 1000
         mathContentFadeIn.startDelay = 600
         practiceView = fragmentView
         controller.readyCheck().subscribeBy(
                 onNext = {
-                    challengesPageAdapter.notifyDataSetChanged()
+                    challengeViewAdapter.notifyDataSetChanged()
                     startPractice(practiceOptions.showPracticeTutorial)
                 },
                 onError = {}
@@ -69,22 +73,18 @@ class PracticeFragment : Fragment() {
     }
 
     private fun bindViews(fragmentView: View) {
-        mathContent = fragmentView.findViewById(R.id.session_ready_content)
+        practiceContent = fragmentView.findViewById(R.id.session_ready_content)
         xpLeftText = fragmentView.findViewById(R.id.practice_xp_left)
         readyStateProgress = fragmentView.session_ready_progress
         readyStateProgress.max = 100000
 
-        progressAnimator = ObjectAnimator.ofInt(readyStateProgress, "progress", 0, 100000)
-        progressAnimator.duration = 1000
-        progressAnimator.repeatCount = ObjectAnimator.INFINITE
-        progressAnimator.repeatMode = ObjectAnimator.RESTART
-        progressAnimator.start()
+        readyStateAnimation = animateInfinite(readyStateProgress, "progress")
 
-        challengesPageAdapter = ChallengesViewAdapter(this, controller.challenges)
+        challengeViewAdapter = ChallengeViewAdapter(this, controller.challenges)
         challengeViewHolder = fragmentView.findViewById(R.id.session_challenge_holder)
         challengeViewHolder.setInAnimation(boltzPracticeActivity, R.animator.slide_from_right)
         challengeViewHolder.setOutAnimation(boltzPracticeActivity, R.animator.slide_to_left)
-        challengeViewHolder.adapter = challengesPageAdapter
+        challengeViewHolder.adapter = challengeViewAdapter
 
         xpCountdownBar = fragmentView.findViewById(R.id.practice_xp_countdown)
         sessionProgressbar = fragmentView.findViewById(R.id.practice_progress)
@@ -93,7 +93,7 @@ class PracticeFragment : Fragment() {
     }
 
     private fun startPractice(showTutorial: Boolean) {
-        progressAnimator.cancel()
+        readyStateAnimation.cancel()
         readyStateProgress.animate().alpha(0f)
 
         challengeViewHolder.showNext()
@@ -203,7 +203,7 @@ class PracticeFragment : Fragment() {
                 .show()
     }
 
-    fun setCountDownProgress(time: Int) {
+    private fun setCountDownProgress(time: Int) {
         xpCountdownBar.progress = time
     }
 
@@ -218,13 +218,13 @@ class PracticeFragment : Fragment() {
     fun correctAnswer() {
         sessionProgressbar.progress++
         if (sessionProgressbar.progress == practiceOptions.questionCount) {
-            mathContent.animate().alpha(0f)
+            practiceContent.animate().alpha(0f)
             endSession(didComplete = true)
         } else proceedNextQuestion(true)
     }
 
-    fun endSession(didComplete: Boolean) {
-        mathContent.animate().alpha(0f).duration = 2000
+    private fun endSession(didComplete: Boolean) {
+        practiceContent.animate().alpha(0f).duration = 2000
         this.controller.endSession(didComplete).subscribeBy(
                 onNext = {
                     boltzPracticeActivity.endSession(it)
@@ -236,18 +236,18 @@ class PracticeFragment : Fragment() {
         proceedNextQuestion(false)
     }
 
-    fun proceedNextQuestion(wasPrevCorrect: Boolean) {
-        challengesPageAdapter.notifyDataSetChanged()
+    private fun proceedNextQuestion(wasPrevCorrect: Boolean) {
+        challengeViewAdapter.notifyDataSetChanged()
         challengeViewHolder.showNext()
         if (wasPrevCorrect) {
-            mathContent.alpha = 0f
+            practiceContent.alpha = 0f
         }
     }
 
     fun answerFeedbackFinished() {
         controller.setStartTime()
         setCountDownProgress(controller.resetCountdown())
-        mathContent.animate().alpha(1f)
+        practiceContent.animate().alpha(1f)
     }
 
     fun inputButtonPressed(view: View) {

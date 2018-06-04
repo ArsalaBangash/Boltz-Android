@@ -1,7 +1,9 @@
 package com.arsalabangash.boltz.practice.utils
 
 import android.animation.Animator
+import android.animation.ObjectAnimator
 import android.animation.ValueAnimator
+import android.view.View
 
 fun ValueAnimator.onAnimStart(onStart: () -> Unit) {
     this.addListener(object : Animator.AnimatorListener {
@@ -37,4 +39,13 @@ fun ValueAnimator.onAnimEnd(onEnd: () -> Unit) {
         }
 
     })
+}
+
+fun animateInfinite(view: View, property: String): ObjectAnimator {
+    val animator = ObjectAnimator.ofInt(view, property, 0, 100000)
+    animator.duration = 1000
+    animator.repeatCount = ObjectAnimator.INFINITE
+    animator.repeatMode = ObjectAnimator.RESTART
+    animator.start()
+    return animator
 }
