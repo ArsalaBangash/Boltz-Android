@@ -14,7 +14,7 @@
         <Button
             style="@style/grid_button_style"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_margin="1dp"
             android:layout_weight="1"
             android:background="@drawable/input_button"
@@ -26,7 +26,7 @@
         <Button
             style="@style/grid_button_style"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_margin="1dp"
             android:layout_weight="1"
             android:background="@drawable/input_button"
@@ -38,7 +38,7 @@
             android:id="@+id/buttonPoint"
             style="@style/backspace_button_style"
             android:layout_width="0dp"
-            android:layout_height="48dp"
+            android:layout_height="match_parent"
             android:layout_margin="1dp"
             android:layout_weight="1"
             android:background="@drawable/input_button"

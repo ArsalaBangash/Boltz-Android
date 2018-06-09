@@ -30,7 +30,7 @@ abstract class StartPracticeFragment : Fragment() {
         sharedPref = PreferenceManager.getDefaultSharedPreferences(activity)
 
         challengeNames = resources.getStringArray(R.array.challenge_types)
-        fragmentView.start_practice.setOnClickListener {
+        fragmentView.setOnClickListener {
             startPractice()
         }
         return fragmentView
