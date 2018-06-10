@@ -2,25 +2,22 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:layout_gravity="bottom"
     android:gravity="bottom"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:weightSum="4">
 
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:weightSum="4">
 
         <Button
             android:id="@+id/button7"
             style="@style/grid_button_style"
-            android:layout_width="0dp"
-            android:layout_height="42dp"
-            android:layout_margin="1dp"
-            android:layout_weight="1"
-            android:background="@drawable/input_button"
             android:onClick="onInputButtonPressed"
             android:tag="7"
             android:text="7" />
@@ -29,11 +26,6 @@
         <Button
             android:id="@+id/button8"
             style="@style/grid_button_style"
-            android:layout_width="0dp"
-            android:layout_height="42dp"
-            android:layout_margin="1dp"
-            android:layout_weight="1"
-            android:background="@drawable/input_button"
             android:onClick="onInputButtonPressed"
             android:tag="8"
             android:text="8" />
@@ -42,34 +34,14 @@
         <Button
             android:id="@+id/button9"
             style="@style/grid_button_style"
-            android:layout_width="0dp"
-            android:layout_height="42dp"
-            android:layout_margin="1dp"
-            android:layout_weight="1"
-            android:background="@drawable/input_button"
             android:onClick="onInputButtonPressed"
             android:tag="9"
             android:text="9" />
 
-        <!--<Button-->
-        <!--android:id="@+id/buttonPoint"-->
-        <!--style="@style/backspace_button_style"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="42dp"-->
-        <!--android:layout_margin="1dp"-->
-        <!--android:layout_weight="1"-->
-        <!--android:background="@drawable/input_button"-->
-        <!--android:onClick="onBackspacePressed"-->
-        <!--android:text="⌫" />-->
 
         <ImageButton
             android:id="@+id/buttonPoint"
             style="@style/backspace_button_style"
-            android:layout_width="0dp"
-            android:layout_height="42dp"
-            android:layout_margin="1dp"
-            android:layout_weight="1"
-            android:background="@drawable/input_button"
             android:onClick="onBackspacePressed"
             android:src="@drawable/ic_backspace" />
 
@@ -79,17 +51,13 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:weightSum="4">
 
         <Button
             android:id="@+id/button4"
             style="@style/grid_button_style"
-            android:layout_width="wrap_content"
-            android:layout_height="42dp"
-            android:layout_margin="1dp"
-            android:layout_weight="1"
-            android:background="@drawable/input_button"
             android:onClick="onInputButtonPressed"
             android:tag="4"
             android:text="4" />
@@ -98,11 +66,6 @@
         <Button
             android:id="@+id/button5"
             style="@style/grid_button_style"
-            android:layout_width="wrap_content"
-            android:layout_height="42dp"
-            android:layout_margin="1dp"
-            android:layout_weight="1"
-            android:background="@drawable/input_button"
             android:onClick="onInputButtonPressed"
             android:tag="5"
             android:text="5" />
@@ -111,11 +74,6 @@
         <Button
             android:id="@+id/button6"
             style="@style/grid_button_style"
-            android:layout_width="wrap_content"
-            android:layout_height="42dp"
-            android:layout_margin="1dp"
-            android:layout_weight="1"
-            android:background="@drawable/input_button"
             android:onClick="onInputButtonPressed"
             android:tag="6"
             android:text="6" />
@@ -124,11 +82,6 @@
         <Button
             android:id="@+id/buttonNegative"
             style="@style/grid_button_style"
-            android:layout_width="wrap_content"
-            android:layout_height="42dp"
-            android:layout_margin="1dp"
-            android:layout_weight="1"
-            android:background="@drawable/input_button"
             android:onClick="onInputButtonPressed"
             android:tag="-"
             android:text="-" />
@@ -139,17 +92,14 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:weightSum="4">
 
         <Button
             android:id="@+id/button1"
             style="@style/grid_button_style"
-            android:layout_width="wrap_content"
-            android:layout_height="42dp"
-            android:layout_margin="1dp"
-            android:layout_weight="1"
-            android:background="@drawable/input_button"
+
             android:onClick="onInputButtonPressed"
             android:tag="1"
             android:text="1" />
@@ -158,11 +108,7 @@
         <Button
             android:id="@+id/button2"
             style="@style/grid_button_style"
-            android:layout_width="wrap_content"
-            android:layout_height="42dp"
-            android:layout_margin="1dp"
-            android:layout_weight="1"
-            android:background="@drawable/input_button"
+
             android:onClick="onInputButtonPressed"
             android:tag="2"
             android:text="2" />
@@ -170,24 +116,13 @@
         <Button
             android:id="@+id/button3"
             style="@style/grid_button_style"
-            android:layout_width="wrap_content"
-            android:layout_height="42dp"
-            android:layout_margin="1dp"
-            android:layout_weight="1"
-            android:background="@drawable/input_button"
             android:onClick="onInputButtonPressed"
             android:tag="3"
-            android:text="3"
-            android:textSize="20dp" />
+            android:text="3" />
 
         <Button
             android:id="@+id/buttonPlus"
             style="@style/grid_button_style"
-            android:layout_width="wrap_content"
-            android:layout_height="42dp"
-            android:layout_margin="1dp"
-            android:layout_weight="1"
-            android:background="@drawable/input_button"
             android:onClick="onInputButtonPressed"
             android:tag="+"
             android:text="+" />
@@ -197,18 +132,13 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:weightSum="4">
 
         <Button
             android:id="@+id/buttonZero"
             style="@style/grid_button_style"
-            android:layout_width="0dp"
-            android:layout_height="42dp"
-            android:layout_gravity="center_vertical"
-            android:layout_margin="1dp"
-            android:layout_weight="1"
-            android:background="@drawable/input_button"
             android:onClick="onInputButtonPressed"
             android:tag="0"
             android:text="0" />
@@ -216,12 +146,6 @@
         <Button
             android:id="@+id/buttonLeftBracket"
             style="@style/grid_button_style"
-            android:layout_width="0dp"
-            android:layout_height="42dp"
-            android:layout_gravity="center_vertical"
-            android:layout_margin="1dp"
-            android:layout_weight="1"
-            android:background="@drawable/input_button"
             android:onClick="onInputButtonPressed"
             android:tag="("
             android:text="(" />
@@ -229,12 +153,6 @@
         <Button
             android:id="@+id/buttonRightBracket"
             style="@style/grid_button_style"
-            android:layout_width="0dp"
-            android:layout_height="42dp"
-            android:layout_gravity="center_vertical"
-            android:layout_margin="1dp"
-            android:layout_weight="1"
-            android:background="@drawable/input_button"
             android:onClick="onInputButtonPressed"
             android:tag=")"
             android:text=")" />
@@ -242,13 +160,8 @@
         <Button
             android:id="@+id/buttonX"
             style="@style/grid_button_style"
-            fontPath="fonts/cmunti.ttf"
-            android:layout_width="0dp"
-            android:layout_height="42dp"
-            android:layout_gravity="center_vertical"
-            android:layout_margin="1dp"
-            android:layout_weight="1"
-            android:background="@drawable/input_button"
+            fontPath="fonts/STIX2Text-Italic.otf"
+            android:textAllCaps="false"
             android:onClick="onInputButtonPressed"
             android:tag="x"
             android:text="x"

@@ -2,6 +2,7 @@ package com.arsalabangash.boltz.practice.ui.fragments
 
 import android.animation.ObjectAnimator
 import android.app.AlertDialog
+import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
@@ -21,6 +22,7 @@ import com.getkeepsafe.taptargetview.TapTargetSequence
 import io.reactivex.rxkotlin.subscribeBy
 import katex.hourglass.`in`.mathlib.MathView
 import kotlinx.android.synthetic.main.fragment_practice.view.*
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
 
 
 class PracticeFragment : Fragment() {

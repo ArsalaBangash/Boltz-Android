@@ -22,7 +22,7 @@ class ChallengeViewAdapter(private val context: PracticeFragment,
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         val currentChallenge = challenges.getHeadChallenge()
-        val challengeView = ChallengeView(context.context!!, currentChallenge).getChallengeView()
+        val challengeView = ChallengeView(context.activity!!.layoutInflater!!, currentChallenge).getChallengeView()
 
         /* If pulling an answer for a challenge is more complex than reading from a single view,
          * then set [userAnswers] accordingly

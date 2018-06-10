@@ -12,11 +12,11 @@
         android:id="@+id/challenge_list_icon"
         android:layout_width="24dp"
         android:layout_height="24dp"
-        android:tint="@color/colorWhite"
-        android:backgroundTint="@color/colorWhite"
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
-        android:layout_marginLeft="4dp" />
+        android:layout_marginLeft="4dp"
+        android:backgroundTint="@color/colorWhite"
+        android:tint="@color/colorWhite" />
 
     <android.support.v7.widget.AppCompatTextView
         android:id="@+id/challenge_list_type"

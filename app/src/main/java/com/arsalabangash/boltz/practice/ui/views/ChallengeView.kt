@@ -1,6 +1,5 @@
 package com.arsalabangash.boltz.practice.ui.views
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.TextView
@@ -16,9 +15,9 @@ import java.util.*
  * specified in the constructor refers to the current challenge in decimal, so that we may use its
  * layout ID to set up the UI and it's decimal to display to the user.
  */
-class ChallengeView(context: Context, challenge: Challenge) {
+class ChallengeView(inflater: LayoutInflater, challenge: Challenge) {
 
-    private var challengeView: View = LayoutInflater.from(context).inflate(challenge.layoutID!!, null)
+    private var challengeView: View = inflater.inflate(challenge.layoutID!!, null)
 
     init {
         val questionView: MathView = challengeView.findViewById<MathView>(R.id.questionView)

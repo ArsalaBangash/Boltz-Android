@@ -22,11 +22,11 @@
 
     <Button
         android:id="@+id/checkButton"
+        style="?android:attr/borderlessButtonStyle"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_margin="8dp"
         android:layout_weight="0.1"
-        style="?android:attr/borderlessButtonStyle"
         android:background="@color/colorPrimary"
         android:onClick="check"
         android:text="CHECK"

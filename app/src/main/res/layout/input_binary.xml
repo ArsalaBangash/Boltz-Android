@@ -9,44 +9,45 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0.5"
-        android:gravity="center">
+        android:gravity="center"
+        android:weightSum="3">
 
         <Button
             style="@style/grid_button_style"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_margin="1dp"
-            android:layout_weight="1"
-            android:background="@drawable/input_button"
             android:onClick="onInputButtonPressed"
             android:tag="1"
-            android:text="1" />
+            android:text="1"
+            android:textSize="48dp" />
 
 
         <Button
             style="@style/grid_button_style"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_margin="1dp"
-            android:layout_weight="1"
-            android:background="@drawable/input_button"
             android:onClick="onInputButtonPressed"
             android:tag="0"
-            android:text="0" />
+            android:text="0"
+            android:textSize="48dp" />
 
-        <ImageButton
+        <android.support.v7.widget.AppCompatImageButton
             android:id="@+id/buttonPoint"
             style="@style/backspace_button_style"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_margin="1dp"
-            android:layout_weight="1"
-            android:background="@drawable/input_button"
+            android:backgroundTint="@color/colorSecondary"
             android:onClick="onBackspacePressed"
-            android:src="@drawable/ic_backspace" />
+            android:src="@drawable/ic_backspace_large" />
 
 
     </LinearLayout>
+
+    <!--<Button-->
+    <!--android:id="@+id/checkButton"-->
+    <!--style="?android:attr/borderlessButtonStyle"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="0dp"-->
+    <!--android:layout_margin="8dp"-->
+    <!--android:layout_weight="0.1"-->
+    <!--android:background="@color/colorPrimary"-->
+    <!--android:onClick="check"-->
+    <!--android:text="CHECK"-->
+    <!--android:textColor="@color/colorWhite" />-->
 
     <Button
         android:id="@+id/checkButton"

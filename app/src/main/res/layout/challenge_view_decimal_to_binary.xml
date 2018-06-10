@@ -11,8 +11,8 @@
         android:id="@+id/challenge_label"
         android:layout_width="match_parent"
         android:layout_height="24dp"
-        android:textColor="@color/colorSecondaryText"
         android:layout_margin="12dp"
+        android:textColor="@color/colorSecondaryText"
         app:autoSizeMaxTextSize="22sp"
         app:autoSizeTextType="uniform" />
 
@@ -37,7 +37,8 @@
         <include
             layout="@layout/input_binary"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:layout_gravity="bottom" />
     </FrameLayout>
 
 
