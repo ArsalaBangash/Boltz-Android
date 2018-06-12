@@ -24,6 +24,9 @@ class ChallengeGenerator(val challengeUtils: ChallengeUtils, level: String, val 
             "Advanced" -> this.level = Level.Advanced
         }
         challenges.forEach { getChallenge(it) }
+        if (classicChallengeOps.isNotEmpty()) {
+            challengeTypes.add({ ClassicChallenge(this.level, challengeUtils, classicChallengeOps) })
+        }
     }
 
     private fun getChallenge(challengeName: String) {
@@ -38,9 +41,6 @@ class ChallengeGenerator(val challengeUtils: ChallengeUtils, level: String, val 
             "Hexadecimal Conversion" -> challengeTypes.add({ HexConvChallenge(level, challengeUtils) })
             "Degree Trigonometry" -> challengeTypes.add({ DegreeTrigChallenge(level, challengeUtils) })
             "Radian Trigonometry" -> challengeTypes.add({ RadianTrigChallenge(level, challengeUtils) })
-        }
-        if (classicChallengeOps.isNotEmpty()) {
-            challengeTypes.add({ ClassicChallenge(level, challengeUtils, classicChallengeOps) })
         }
     }
 

@@ -32,7 +32,7 @@ class CustomizeFragment : Fragment() {
     //Property Declarations
     private lateinit var sharedPref: SharedPreferences
     private val challengeArray = ArrayList<ChallengeData>()
-    private val difficulties = arrayOf<String>("Basic", "Normal", "Advanced")
+    private val difficulties = arrayOf("Basic", "Normal", "Advanced")
     private var difficultyIndex = 1
 
 

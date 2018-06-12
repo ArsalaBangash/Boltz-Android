@@ -16,6 +16,7 @@ import com.arsalabangash.boltz.practice.ui.adapters.ChallengeViewAdapter
 import com.arsalabangash.boltz.practice.ui.controllers.PracticeController
 import com.arsalabangash.boltz.practice.ui.views.ChallengeTextInput
 import com.arsalabangash.boltz.practice.utils.animateInfinite
+import com.arsalabangash.boltz.practice.utils.onAnimEnd
 import com.arsalabangash.boltz.practice.utils.onAnimStart
 import com.getkeepsafe.taptargetview.TapTarget
 import com.getkeepsafe.taptargetview.TapTargetSequence
@@ -67,6 +68,7 @@ class PracticeFragment : Fragment() {
                 onNext = {
                     challengeViewAdapter.notifyDataSetChanged()
                     startPractice(practiceOptions.showPracticeTutorial)
+
                 },
                 onError = {}
         )

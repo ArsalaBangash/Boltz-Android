@@ -10,16 +10,19 @@
         android:id="@+id/multiple_choice_options"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0.35"
-        android:gravity="center">
+        android:layout_weight="0.4"
+        android:gravity="center"
+        android:weightSum="2">
 
-        <TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
 
             <RadioButton
                 android:id="@+id/optionA"
                 style="@style/multiple_choice_button_style"
                 android:layout_weight="1"
-                android:background="@drawable/input_button"
                 android:onClick="onInputButtonPressed" />
 
 
@@ -27,18 +30,19 @@
                 android:id="@+id/optionB"
                 style="@style/multiple_choice_button_style"
                 android:layout_weight="1"
-                android:background="@drawable/input_button"
                 android:onClick="onInputButtonPressed" />
 
         </TableRow>
 
-        <TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
 
             <RadioButton
                 android:id="@+id/optionC"
                 style="@style/multiple_choice_button_style"
                 android:layout_weight="1"
-                android:background="@drawable/input_button"
                 android:onClick="onInputButtonPressed" />
 
 
@@ -46,7 +50,6 @@
                 android:id="@+id/optionD"
                 style="@style/multiple_choice_button_style"
                 android:layout_weight="1"
-                android:background="@drawable/input_button"
                 android:onClick="onInputButtonPressed" />
 
         </TableRow>
@@ -54,14 +57,8 @@
 
     <Button
         android:id="@+id/checkButton"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_margin="8dp"
-        android:layout_weight="0.25"
-        style="?android:attr/borderlessButtonStyle"
-        android:background="@color/colorPrimary"
-        android:onClick="check"
-        android:text="CHECK"
-        android:textColor="@color/colorWhite" />
+        style="@style/check_button_style"
+        android:layout_weight="0.2"
+        android:onClick="check" />
 
 </LinearLayout>

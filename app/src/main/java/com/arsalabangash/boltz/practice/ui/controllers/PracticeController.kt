@@ -3,6 +3,7 @@ package com.arsalabangash.boltz.practice.ui.controllers
 import android.annotation.SuppressLint
 import android.os.CountDownTimer
 import android.os.SystemClock
+import android.util.Log
 import android.view.View
 import android.widget.EditText
 import android.widget.ProgressBar

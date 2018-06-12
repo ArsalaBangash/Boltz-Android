@@ -161,11 +161,11 @@
             android:id="@+id/buttonX"
             style="@style/grid_button_style"
             fontPath="fonts/STIX2Text-Italic.otf"
+            android:includeFontPadding="false"
             android:textAllCaps="false"
             android:onClick="onInputButtonPressed"
             android:tag="x"
             android:text="x"
-            android:textSize="30sp"
             tools:ignore="HardcodedText,MissingPrefix" />
     </LinearLayout>
 

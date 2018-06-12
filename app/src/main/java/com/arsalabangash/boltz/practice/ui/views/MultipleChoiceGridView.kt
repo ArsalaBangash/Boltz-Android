@@ -1,11 +1,13 @@
 package com.arsalabangash.boltz.practice.ui.views
 
 import android.content.Context
+import android.support.v4.content.ContextCompat
 import android.util.AttributeSet
 import android.view.View
 import android.widget.RadioButton
 import android.widget.TableLayout
 import android.widget.TableRow
+import com.arsalabangash.boltz.practice.R
 
 
 class MultipleChoiceGridView(context: Context, attrs: AttributeSet) : TableLayout(context, attrs), View.OnClickListener {
@@ -23,6 +25,7 @@ class MultipleChoiceGridView(context: Context, attrs: AttributeSet) : TableLayou
         }
         rb.isChecked = true
         activeRadioButton = rb
+
     }
 
     override fun addView(child: View, index: Int, params: android.view.ViewGroup.LayoutParams) {
@@ -41,6 +44,16 @@ class MultipleChoiceGridView(context: Context, attrs: AttributeSet) : TableLayou
         val c = tr.childCount
         (0 until c)
                 .map { tr.getChildAt(it) }
-                .forEach { (it as RadioButton).setOnClickListener(this) }
+                .forEach {
+                    (it as RadioButton).setOnClickListener(this)
+                    it.setOnCheckedChangeListener { button, isChecked ->
+                        button.backgroundTintList = if (isChecked) {
+                            ContextCompat.getColorStateList(context, R.color.colorPrimary)
+                        } else {
+                            ContextCompat.getColorStateList(context, R.color.colorSecondary)
+                        }
+                    }
+                }
     }
+
 }

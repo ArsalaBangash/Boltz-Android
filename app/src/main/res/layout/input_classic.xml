@@ -9,8 +9,9 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_gravity="center_vertical"
-        android:layout_margin="8dp"
-        android:layout_weight="0.5">
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_weight="0.45">
 
         <include
             layout="@layout/grid_calculator"
@@ -21,14 +22,8 @@
 
     <Button
         android:id="@+id/checkButton"
-        style="?android:attr/borderlessButtonStyle"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_margin="8dp"
-        android:layout_weight="0.1"
-        android:background="@color/colorPrimary"
-        android:onClick="check"
-        android:text="CHECK"
-        android:textColor="@color/colorWhite" />
+        style="@style/check_button_style"
+        android:layout_weight="0.15"
+        android:onClick="check" />
 
 </LinearLayout>

@@ -92,27 +92,26 @@ class AnswerFeedbackFragment : Fragment() {
     fun correctAnswer(xp: Long, streak: Int) {
         animateXP(xp)
         var animation = "correct_check.json"
-//        when {
-//            streak <= 1 -> playSound(correctMP)
-//            streak == 2 -> playSound(correct2MP)
-//            streak == 3 -> {
-//                playSound(correct3MP)
-//                animation = streakAnimationNames.getRandomElement()
-//                animateStreak(streak)
-//            }
-//            streak == 4 -> playSound(correct4MP)
-//            streak % 5 == 0 -> {
-//                playSound(correct5MP)
-//                animation = streakAnimationNames.getRandomElement()
-//                animateStreak(streak)
-//            }
-//            else -> {
-//                playSound(correct5MP)
-//                animation = animationNames.getRandomElement()
-//                animateStreak(streak)
-//            }
-//        }
-        animateStreak(1)
+        when {
+            streak <= 1 -> playSound(correctMP)
+            streak == 2 -> playSound(correct2MP)
+            streak == 3 -> {
+                playSound(correct3MP)
+                animation = streakAnimationNames.getRandomElement()
+                animateStreak(streak)
+            }
+            streak == 4 -> playSound(correct4MP)
+            streak % 5 == 0 -> {
+                playSound(correct5MP)
+                animation = streakAnimationNames.getRandomElement()
+                animateStreak(streak)
+            }
+            else -> {
+                playSound(correct5MP)
+                animation = animationNames.getRandomElement()
+                animateStreak(streak)
+            }
+        }
         correctFeedbackContainer.alpha = 1f
         playAnimation(animation)
     }

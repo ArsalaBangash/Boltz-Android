@@ -24,6 +24,8 @@
         <item name="android:colorButtonNormal">@color/colorSecondary</item>
         <item name="android:textSize">20sp</item>
         <item name="android:textStyle">bold</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:includeFontPadding">false</item>
         <item name="android:textColor">@color/colorWhite</item>
         <item name="android:layout_margin">0dp</item>
         <item name="android:layout_weight">1</item>
@@ -31,18 +33,24 @@
         <item name="android:layout_height">match_parent</item>
     </style>
 
-    <style name="PrimaryFlatButton" parent="Theme.AppCompat.Light">
-        <item name="android:buttonStyle">@style/Widget.AppCompat.Button.Borderless.Colored</item>
-        <item name="colorControlHighlight">@color/colorWhite</item>
-    </style>
-
     <style name="multiple_choice_button_style" parent="grid_button_style">
-        <item name="android:layout_margin">6dp</item>
+        <item name="android:layout_margin">8dp</item>
         <item name="android:layout_width">0dp</item>
-        <item name="android:layout_height">72dp</item>
+        <item name="android:layout_height">match_parent</item>
         <item name="android:button">@null</item>
         <item name="android:textAlignment">center</item>
         <item name="android:textSize">26sp</item>
+    </style>
+
+    <style name="check_button_style" parent="@style/Widget.AppCompat.Button.Colored">
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_marginLeft">8dp</item>
+        <item name="android:layout_marginRight">8dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:text">CHECK</item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:backgroundTint">@color/colorPrimary</item>
     </style>
 
     <style name="backspace_button_style" parent="grid_button_style">
