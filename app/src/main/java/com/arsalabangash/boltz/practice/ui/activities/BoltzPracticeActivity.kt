@@ -70,16 +70,16 @@ abstract class BoltzPracticeActivity : AppCompatActivity(), BoltzPractice {
     private fun buildEndPracticeDialog(): AlertDialog {
         //Binds button logic related to the end session dialog
         val endSessionDialogBuilder = AlertDialog.Builder(this)
-        endSessionDialogBuilder.setNegativeButton(getString(R.string.cancel), { dialog: DialogInterface, which: Int ->
+        endSessionDialogBuilder.setNegativeButton(getString(R.string.cancel)) { dialog: DialogInterface, which: Int ->
             run {
                 endPracticeDialog.hide()
             }
-        })
-        endSessionDialogBuilder.setPositiveButton(getString(R.string.quit), { dialog: DialogInterface, which: Int ->
+        }
+        endSessionDialogBuilder.setPositiveButton(getString(R.string.quit)) { dialog: DialogInterface, which: Int ->
             run {
                 endSession(this.practiceFragment.controller.getPracticeData(false))
             }
-        })
+        }
         endSessionDialogBuilder.setTitle(getString(R.string.dialog_end_session_title))
         endSessionDialogBuilder.setMessage(getString(R.string.dialog_end_session_message))
         val endSessionDialog = endSessionDialogBuilder.create()

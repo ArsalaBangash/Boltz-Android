@@ -194,15 +194,15 @@ class PracticeFragment : Fragment() {
         AlertDialog.Builder(boltzPracticeActivity)
                 .setTitle("Welcome to your Math Practice Session!")
                 .setMessage("Would you like to take a short tour to see how everything works?")
-                .setPositiveButton("Sure", { _, _ ->
+                .setPositiveButton("Sure") { _, _ ->
                     startTutorial()
-                })
-                .setNegativeButton("No Thanks", { _, _ ->
+                }
+                .setNegativeButton("No Thanks") { _, _ ->
                     configureCountDownTimer()
                     sessionReady = true
                     controller.setStartTime()
                     readyStateProgress.visibility = View.GONE
-                })
+                }
                 .create()
                 .show()
     }
